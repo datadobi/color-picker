@@ -38,6 +38,7 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
 
     <div class="vertical-spacing">
       <sl-slider disabled$="[[disabled]]"
+                 hidden$="[[disableSLSlider]]"
                  hue="[[_hue]]"
                  step-x="[[_stepSl(stepHsl)]]"
                  step-y="[[_stepSl(stepHsl)]]"
@@ -82,6 +83,13 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
        * The previous value.
        */
       previousValue: Object,
+      /**
+       * Set to true to disable the SL Slider canvas
+       */
+      disableSLSlider: {
+        type: Boolean,
+        value: true
+      },
       /**
        * Disable the input of **alpha** values.
        */

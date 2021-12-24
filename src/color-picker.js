@@ -102,6 +102,13 @@ class ColorPicker extends ElementMixin(ThemableMixin(PolymerElement)) {
         value: false
       },
       /**
+       * Set to true to disable the SL Slider canvas
+       */
+      disableSLSlider: {
+        type: Boolean,
+        value: true
+      },
+      /**
        * Set to true to disable **alpha** input and **alpha** slider.
        */
       disableAlpha: {
