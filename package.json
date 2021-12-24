@@ -1,6 +1,6 @@
 {
   "name": "@datadobi/color-picker",
-  "version": "2.0.0-beta.4-datadobi1",
+  "version": "2.0.0-beta.4-datadobi2",
   "description": "color-picker",
   "main": "color-picker.js",
   "repository": "datadobi/color-picker",
@@ -48,7 +48,7 @@
     "@polymer/iron-resizable-behavior": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
     "@thebespokepixel/es-tinycolor": "^1.0.7",
-    "@vaadin/vaadin-button": "^2.2.0",
+    "@vaadin/vaadin-button": "^2.2.1",
     "@vaadin/vaadin-checkbox": "^2.2.10",
     "@vaadin/vaadin-control-state-mixin": "^2.1.1",
     "@vaadin/vaadin-element-mixin": "^2.0.0",
