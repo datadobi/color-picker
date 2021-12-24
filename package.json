@@ -1,9 +1,9 @@
 {
-  "name": "@appreciated/color-picker",
+  "name": "@datadobi/color-picker",
   "version": "2.0.0-beta.4-datadobi1",
   "description": "color-picker",
   "main": "color-picker.js",
-  "repository": "juchar/color-picker",
+  "repository": "datadobi/color-picker",
   "keywords": [
     "Vaadin",
     "color-picker",
@@ -14,9 +14,9 @@
   "author": "Juchar",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/juchar/color-picker/issues"
+    "url": "https://github.com/datadobi/color-picker/issues"
   },
-  "homepage": "https://github.com/juchar/color-picker",
+  "homepage": "https://github.com/datadobi/color-picker",
   "files": [
     "vaadin-*.js",
     "src",
