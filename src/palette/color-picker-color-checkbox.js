@@ -1,4 +1,4 @@
-import {CheckboxElement} from '@vaadin/checkbox/src/vaadin-checkbox';
+import {Checkbox} from '@vaadin/checkbox/src/vaadin-checkbox';
 import '@vaadin/checkbox';
 import ColorPickerUtils from '../utils/color-picker-utils';
 
@@ -14,7 +14,7 @@ let memoizedTemplate;
  * @mixes ThemableMixin
  * @mixes Vaadin.DisabledPropertyMixin
  */
-class ColorCheckboxElement extends CheckboxElement {
+class ColorCheckboxElement extends Checkbox {
 
   static get is() {
     return 'color-checkbox';
