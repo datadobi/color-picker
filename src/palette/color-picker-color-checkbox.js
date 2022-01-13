@@ -1,5 +1,5 @@
-import {CheckboxElement} from '@vaadin/vaadin-checkbox/src/vaadin-checkbox';
-import '@vaadin/vaadin-checkbox';
+import {CheckboxElement} from '@vaadin/checkbox/src/vaadin-checkbox';
+import '@vaadin/checkbox';
 import ColorPickerUtils from '../utils/color-picker-utils';
 
 let memoizedTemplate;

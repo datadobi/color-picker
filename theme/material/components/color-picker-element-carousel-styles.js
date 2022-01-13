@@ -1,5 +1,5 @@
-import "@vaadin/vaadin-icons/vaadin-icons.js";
-import "@vaadin/vaadin-button/theme/material/vaadin-button.js";
+import "@vaadin/icons/vaadin-icons.js";
+import "@vaadin/button/theme/material/vaadin-button.js";
 
 import {html} from '@polymer/polymer';
 

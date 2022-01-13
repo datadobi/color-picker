@@ -2,7 +2,7 @@ import {html, PolymerElement} from '@polymer/polymer';
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
 import {ElementMixin} from '@vaadin/vaadin-element-mixin';
 import '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/button/src/vaadin-button.js';
 import '../utils/vaadin-disabled-property-mixin.js';
 import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer';
 import ColorPickerUtils from '../utils/color-picker-utils';

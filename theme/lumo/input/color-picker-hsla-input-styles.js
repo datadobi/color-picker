@@ -1,1 +1,1 @@
-import '@vaadin/vaadin-text-field/vaadin-number-field.js';
+import '@vaadin/number-field/vaadin-number-field.js';

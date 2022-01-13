@@ -1,4 +1,4 @@
-import '@vaadin/vaadin-text-field/vaadin-text-field.js';
+import '@vaadin/text-field/vaadin-text-field.js';
 import './color-picker-color-input.js';
 import {tinycolor} from '@thebespokepixel/es-tinycolor';
 import {html} from '@polymer/polymer';

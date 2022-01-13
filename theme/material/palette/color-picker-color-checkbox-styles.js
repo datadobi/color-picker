@@ -1,4 +1,4 @@
-import "@vaadin/vaadin-checkbox/theme/material/vaadin-checkbox.js";
+import "@vaadin/checkbox/theme/material/vaadin-checkbox.js";
 
 import {html} from '@polymer/polymer';
 

@@ -1,4 +1,4 @@
-import "@vaadin/vaadin-icons/vaadin-icons.js";
+import "@vaadin/icons/vaadin-icons.js";
 import {html} from '@polymer/polymer';
 
 const $_documentContainer = html`

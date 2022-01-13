@@ -7,7 +7,7 @@ import "./input/color-picker-rgba-input-styles.js";
 import "./palette/color-picker-color-checkbox-styles.js";
 import "./slider/color-picker-color-slider-styles.js";
 import "./slider/color-picker-selected-color-styles.js";
-// TODO empty? import "./components/color-picker-element-carousel-styles.js";
+import "./components/color-picker-element-carousel-styles.js";
 import "./components/color-picker-responsive-canvas-styles.js";
 
 import {html} from '@polymer/polymer';
