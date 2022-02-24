@@ -1,6 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer';
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/vaadin-element-mixin';
+import {ElementMixin} from '@vaadin/component-base';
 import '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import '@vaadin/button/src/vaadin-button.js';
 import '../utils/vaadin-disabled-property-mixin.js';

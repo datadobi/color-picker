@@ -1,6 +1,6 @@
 {
   "name": "@datadobi/color-picker",
-  "version": "2.0.0-beta.4-datadobi4",
+  "version": "2.0.0-beta.4-datadobi5",
   "description": "color-picker",
   "main": "color-picker.js",
   "repository": "datadobi/color-picker",
@@ -40,22 +40,21 @@
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.1",
-    "@vaadin/vaadin-component-dev-dependencies": "^3.0.0",
-    "@vaadin/vaadin-demo-helpers": "^3.0.0",
+    "@vaadin/vaadin-component-dev-dependencies": "^3.2.0",
+    "@vaadin/vaadin-demo-helpers": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.3.0"
   },
   "dependencies": {
     "@polymer/iron-resizable-behavior": "^3.0.1",
-    "@polymer/polymer": "^3.0.0",
+    "@polymer/polymer": "^3.4.1",
     "@thebespokepixel/es-tinycolor": "^1.0.7",
-    "@vaadin/button": "^22.0.2",
-    "@vaadin/checkbox": "^22.0.2",
-    "@vaadin/vaadin-control-state-mixin": "^2.1.1",
-    "@vaadin/vaadin-element-mixin": "^2.0.0",
-    "@vaadin/icons": "^22.0.2",
-    "@vaadin/tabs": "^22.0.2",
-    "@vaadin/text-field": "^22.0.2",
-    "@vaadin/number-field": "^22.0.2",
-    "@vaadin/vaadin-themable-mixin": "^22.0.2"
+    "@vaadin/button": "^22.0.5",
+    "@vaadin/checkbox": "^22.0.5",
+    "@vaadin/component-base": "^22.0.5",
+    "@vaadin/icons": "^22.0.5",
+    "@vaadin/tabs": "^22.0.5",
+    "@vaadin/text-field": "^22.0.5",
+    "@vaadin/number-field": "^22.0.5",
+    "@vaadin/vaadin-themable-mixin": "^22.0.5"
   }
 }

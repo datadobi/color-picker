@@ -1,5 +1,5 @@
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/vaadin-element-mixin';
+import {ElementMixin} from '@vaadin/component-base';
 import '@vaadin/number-field/vaadin-number-field.js';
 import './color-picker-color-input.js';
 import {tinycolor} from '@thebespokepixel/es-tinycolor';

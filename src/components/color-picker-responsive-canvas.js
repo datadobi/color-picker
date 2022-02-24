@@ -1,6 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer';
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/vaadin-element-mixin';
+import {ElementMixin} from '@vaadin/component-base';
 import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 import '../utils/vaadin-disabled-property-mixin.js';
 import {IronResizableBehavior} from '@polymer/iron-resizable-behavior';

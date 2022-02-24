@@ -1,6 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer';
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/vaadin-element-mixin';
+import {ElementMixin} from '@vaadin/component-base';
 import '../components/color-picker-element-carousel.js';
 import './color-picker-color-palette.js';
 import '../utils/vaadin-disabled-property-mixin.js';

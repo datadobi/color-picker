@@ -1,5 +1,5 @@
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
 import {ControlStateMixin} from '@vaadin/vaadin-control-state-mixin';
 import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 import '../components/color-picker-responsive-canvas.js';

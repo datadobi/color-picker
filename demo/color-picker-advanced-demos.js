@@ -38,7 +38,7 @@ class ColorPickerAdvancedDemos extends window.DemoReadyEventEmitter(ColorPickerD
     <p>It is possible to disable the selection of an alpha value using the
       <code>disable-alpha</code> property.</p>
     <vaadin-demo-snippet id="color-picker-alpha" when-defined="color-picker">
-        <color-picker disable-alpha></color-picker>
+        <color-picker disable-alpha disable-sl></color-picker>
     </vaadin-demo-snippet>
 
     <h3>Disabling color formats</h3>

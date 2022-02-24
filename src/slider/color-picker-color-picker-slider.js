@@ -1,6 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer';
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/vaadin-element-mixin';
+import {ElementMixin} from '@vaadin/component-base';
 import {tinycolor} from '@thebespokepixel/es-tinycolor';
 import './color-picker-sl-slider.js';
 import './color-picker-hue-slider.js';
@@ -38,7 +38,7 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
 
     <div class="vertical-spacing">
       <sl-slider disabled$="[[disabled]]"
-                 hidden$="[[disableSLSlider]]"
+                 hidden$="[[disableSl]]"
                  hue="[[_hue]]"
                  step-x="[[_stepSl(stepHsl)]]"
                  step-y="[[_stepSl(stepHsl)]]"
@@ -84,16 +84,16 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
        */
       previousValue: Object,
       /**
-       * Set to true to disable the SL Slider canvas
-       */
-      disableSLSlider: {
-        type: Boolean,
-        value: true
-      },
-      /**
        * Disable the input of **alpha** values.
        */
       disableAlpha: {
+        type: Boolean,
+        value: false
+      },
+      /**
+       * Set to true to disable **sl** slider.
+       */
+      disableSl: {
         type: Boolean,
         value: false
       },
