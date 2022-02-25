@@ -50,6 +50,7 @@
     "@thebespokepixel/es-tinycolor": "^1.0.7",
     "@vaadin/button": "^22.0.5",
     "@vaadin/checkbox": "^22.0.5",
+    "@vaadin/field-base": "^22.0.5",
     "@vaadin/component-base": "^22.0.5",
     "@vaadin/icons": "^22.0.5",
     "@vaadin/tabs": "^22.0.5",
