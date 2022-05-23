@@ -1,6 +1,6 @@
 {
   "name": "@datadobi/color-picker",
-  "version": "2.0.0-beta.4-datadobi6",
+  "version": "2.0.0-beta.4-datadobi7",
   "description": "color-picker",
   "main": "color-picker.js",
   "repository": "datadobi/color-picker",
@@ -48,14 +48,14 @@
     "@polymer/iron-resizable-behavior": "^3.0.1",
     "@polymer/polymer": "^3.4.1",
     "@thebespokepixel/es-tinycolor": "^1.0.7",
-    "@vaadin/button": "^22.0.5",
-    "@vaadin/checkbox": "^22.0.5",
-    "@vaadin/field-base": "^22.0.5",
-    "@vaadin/component-base": "^22.0.5",
-    "@vaadin/icons": "^22.0.5",
-    "@vaadin/tabs": "^22.0.5",
-    "@vaadin/text-field": "^22.0.5",
-    "@vaadin/number-field": "^22.0.5",
-    "@vaadin/vaadin-themable-mixin": "^22.0.5"
+    "@vaadin/button": "^23.0.0",
+    "@vaadin/checkbox": "^23.0.0",
+    "@vaadin/field-base": "^23.0.0",
+    "@vaadin/component-base": "^23.0.0",
+    "@vaadin/icons": "^23.0.0",
+    "@vaadin/tabs": "^23.0.0",
+    "@vaadin/text-field": "^23.0.0",
+    "@vaadin/number-field": "^23.0.0",
+    "@vaadin/vaadin-themable-mixin": "^23.0.0"
   }
 }
