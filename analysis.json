@@ -34,7 +34,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -54,11 +54,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -182,13 +206,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -207,7 +231,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -236,11 +260,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -268,11 +292,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -300,11 +324,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -327,11 +351,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -354,11 +378,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -374,6 +398,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -464,11 +514,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -481,16 +531,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -500,6 +550,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -566,7 +635,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -586,11 +655,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -937,13 +1030,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -962,7 +1055,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -971,11 +1064,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -993,11 +1086,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -1025,11 +1118,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -1057,11 +1150,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -1084,11 +1177,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -1111,11 +1204,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -1131,6 +1224,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -1391,11 +1510,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -1408,16 +1527,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -1427,6 +1546,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -1981,7 +2119,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -2001,11 +2139,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -2112,11 +2274,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -2132,13 +2294,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -2157,7 +2319,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -2166,11 +2328,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -2188,11 +2350,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -2220,11 +2382,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -2252,11 +2414,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -2279,11 +2441,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -2306,11 +2468,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -2326,6 +2488,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -2456,11 +2644,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -2473,16 +2661,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -2492,6 +2680,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             },
             {
@@ -2636,7 +2843,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -2656,11 +2863,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -2882,11 +3113,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -2902,13 +3133,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -2927,7 +3158,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -2936,11 +3167,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -2958,11 +3189,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -2990,11 +3221,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -3022,11 +3253,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -3049,11 +3280,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -3076,11 +3307,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -3096,6 +3327,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -3207,11 +3464,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -3224,16 +3481,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -3243,6 +3500,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -3374,7 +3650,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -3394,11 +3670,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -3505,11 +3805,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -3525,13 +3825,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -3550,7 +3850,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -3559,11 +3859,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -3581,11 +3881,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -3613,11 +3913,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -3645,11 +3945,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -3672,11 +3972,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -3699,11 +3999,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -3719,6 +4019,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -3789,11 +4115,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -3806,16 +4132,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -3825,6 +4151,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -3892,7 +4237,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -3912,11 +4257,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -4054,11 +4423,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -4074,13 +4443,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -4099,7 +4468,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -4108,11 +4477,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -4130,11 +4499,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -4162,11 +4531,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -4194,11 +4563,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -4221,11 +4590,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -4248,11 +4617,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -4268,6 +4637,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -4365,11 +4760,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -4382,16 +4777,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -4401,6 +4796,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -5029,7 +5443,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -5049,11 +5463,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -5273,11 +5711,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -5293,13 +5731,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -5318,7 +5756,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -5327,11 +5765,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -5349,11 +5787,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -5381,11 +5819,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -5413,11 +5851,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -5440,11 +5878,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -5467,11 +5905,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -5487,6 +5925,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -5564,11 +6028,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -5581,16 +6045,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -5600,6 +6064,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -5775,6 +6258,30 @@
           "path": "src/palette/color-picker-color-checkbox.js",
           "properties": [
             {
+              "name": "__controllers",
+              "type": "Set.<ReactiveController>",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/component-base/src/controller-mixin.js",
+                "start": {
+                  "line": 26,
+                  "column": 8
+                },
+                "end": {
+                  "line": 26,
+                  "column": 26
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "readOnly": false
+                }
+              },
+              "defaultValue": "new Set()",
+              "inheritedFrom": "ControllerMixin"
+            },
+            {
               "name": "theme",
               "type": "string | null | undefined",
               "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
@@ -5782,11 +6289,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -5810,7 +6341,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -5896,49 +6427,48 @@
             {
               "name": "tabindex",
               "type": "number | null | undefined",
-              "description": "Indicates whether the element can be focused and where it participates in sequential keyboard navigation.\n\nBy default, the host element does not have tabindex attribute. Instead, `focusElement` should have it.\nToggling `tabindex` attribute on the host element propagates its value to `focusElement`.",
+              "description": "Indicates whether the element can be focused and where it participates in sequential keyboard navigation.",
               "privacy": "protected",
-              "sourceRange": {
-                "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
-                "start": {
-                  "line": 52,
-                  "column": 10
-                },
-                "end": {
-                  "line": 55,
-                  "column": 11
-                }
-              },
-              "metadata": {
-                "polymer": {
-                  "attributeType": "Number"
-                }
-              },
-              "inheritedFrom": "DelegateFocusMixin"
-            },
-            {
-              "name": "__lastTabIndex",
-              "type": "number | null | undefined",
-              "description": "Stores the last known tabindex since the element has been disabled.",
-              "privacy": "private",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/tabindex-mixin.js",
                 "start": {
-                  "line": 38,
+                  "line": 25,
                   "column": 8
                 },
                 "end": {
-                  "line": 41,
+                  "line": 29,
                   "column": 9
                 }
               },
               "metadata": {
                 "polymer": {
+                  "observer": "\"_tabindexChanged\"",
                   "attributeType": "Number"
                 }
               },
-              "defaultValue": "0",
               "inheritedFrom": "TabindexMixin"
+            },
+            {
+              "name": "_lastTabIndex",
+              "type": "?",
+              "description": "Override the property from `TabIndexMixin`\nto ensure the `tabindex` attribute of the focus element\nwill be restored to `0` after re-enabling the element.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 10
+                },
+                "end": {
+                  "line": 56,
+                  "column": 11
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "0",
+              "inheritedFrom": "DelegateFocusMixin"
             },
             {
               "name": "autofocus",
@@ -5966,16 +6496,16 @@
             {
               "name": "focusElement",
               "type": "!HTMLElement",
-              "description": "A reference to the focusable element controlled by the mixin.\nIt can be an input, textarea, button or any element with tabindex > -1.\n\nAny component implementing this mixin is expected to provide it\nby using `this._setFocusElement(input)` Polymer API.",
+              "description": "A reference to the focusable element controlled by the mixin.\nIt can be an input, textarea, button or any element with tabindex > -1.\n\nAny component implementing this mixin is expected to provide it\nby using `this._setFocusElement(input)` Polymer API.\n\nToggling `tabindex` attribute on the host element propagates its value to `focusElement`.",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 38,
+                  "line": 40,
                   "column": 10
                 },
                 "end": {
-                  "line": 42,
+                  "line": 44,
                   "column": 11
                 }
               },
@@ -6769,11 +7299,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 558,
+                  "line": 563,
                   "column": 6
                 },
                 "end": {
-                  "line": 558,
+                  "line": 563,
                   "column": 21
                 }
               },
@@ -6792,11 +7322,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 560,
+                  "line": 565,
                   "column": 6
                 },
                 "end": {
-                  "line": 560,
+                  "line": 565,
                   "column": 23
                 }
               },
@@ -6815,11 +7345,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 562,
+                  "line": 567,
                   "column": 6
                 },
                 "end": {
-                  "line": 562,
+                  "line": 567,
                   "column": 20
                 }
               },
@@ -6838,11 +7368,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 564,
+                  "line": 569,
                   "column": 6
                 },
                 "end": {
-                  "line": 564,
+                  "line": 569,
                   "column": 22
                 }
               },
@@ -6861,11 +7391,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 566,
+                  "line": 571,
                   "column": 6
                 },
                 "end": {
-                  "line": 566,
+                  "line": 571,
                   "column": 16
                 }
               },
@@ -6884,11 +7414,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 568,
+                  "line": 573,
                   "column": 6
                 },
                 "end": {
-                  "line": 568,
+                  "line": 573,
                   "column": 13
                 }
               },
@@ -6930,11 +7460,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 675,
+                  "line": 680,
                   "column": 4
                 },
                 "end": {
-                  "line": 680,
+                  "line": 685,
                   "column": 5
                 }
               },
@@ -6970,22 +7500,23 @@
             {
               "name": "addController",
               "description": "Registers a controller to participate in the element update cycle.",
-              "privacy": "public",
+              "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/controller-mixin.js",
                 "start": {
-                  "line": 48,
+                  "line": 57,
                   "column": 6
                 },
                 "end": {
-                  "line": 54,
+                  "line": 63,
                   "column": 7
                 }
               },
               "metadata": {},
               "params": [
                 {
-                  "name": "controller"
+                  "name": "controller",
+                  "type": "ReactiveController"
                 }
               ],
               "return": {
@@ -6996,22 +7527,23 @@
             {
               "name": "removeController",
               "description": "Removes a controller from the element.",
-              "privacy": "public",
+              "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/controller-mixin.js",
                 "start": {
-                  "line": 62,
+                  "line": 71,
                   "column": 6
                 },
                 "end": {
-                  "line": 64,
+                  "line": 73,
                   "column": 7
                 }
               },
               "metadata": {},
               "params": [
                 {
-                  "name": "controller"
+                  "name": "controller",
+                  "type": "ReactiveController"
                 }
               ],
               "return": {
@@ -7020,36 +7552,73 @@
               "inheritedFrom": "ControllerMixin"
             },
             {
-              "name": "attributeChangedCallback",
+              "name": "__deprecatedThemePropertyChanged",
               "description": "",
-              "privacy": "protected",
+              "privacy": "private",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 62,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 64,
                   "column": 5
                 }
               },
               "metadata": {},
               "params": [
                 {
-                  "name": "name"
-                },
-                {
-                  "name": "oldValue"
-                },
-                {
-                  "name": "newValue"
+                  "name": "theme"
                 }
               ],
               "return": {
                 "type": "void"
               },
               "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "attributeChangedCallback",
+              "description": "Implements native Custom Elements `attributeChangedCallback` to\nset an attribute value to a property via `_attributeToProperty`.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "../../node_modules/%40polymer/polymer/lib/mixins/properties-changed.js",
+                "start": {
+                  "line": 461,
+                  "column": 4
+                },
+                "end": {
+                  "line": 468,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string",
+                  "description": "Name of attribute that changed"
+                },
+                {
+                  "name": "old",
+                  "type": "?string",
+                  "description": "Old attribute value"
+                },
+                {
+                  "name": "value",
+                  "type": "?string",
+                  "description": "New attribute value"
+                },
+                {
+                  "name": "namespace",
+                  "type": "?string",
+                  "description": "Attribute namespace."
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "PropertiesChanged"
             },
             {
               "name": "_valueToNodeAttribute",
@@ -7134,11 +7703,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -7161,11 +7730,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -7188,11 +7757,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -7371,11 +7940,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 172,
+                  "line": 173,
                   "column": 6
                 },
                 "end": {
-                  "line": 174,
+                  "line": 175,
                   "column": 7
                 }
               },
@@ -7501,11 +8070,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 202,
+                  "line": 203,
                   "column": 6
                 },
                 "end": {
-                  "line": 204,
+                  "line": 205,
                   "column": 7
                 }
               },
@@ -7528,11 +8097,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 82,
+                  "line": 83,
                   "column": 6
                 },
                 "end": {
-                  "line": 89,
+                  "line": 90,
                   "column": 7
                 }
               },
@@ -7550,11 +8119,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 95,
+                  "line": 96,
                   "column": 6
                 },
                 "end": {
-                  "line": 101,
+                  "line": 102,
                   "column": 7
                 }
               },
@@ -7572,11 +8141,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 114,
+                  "line": 115,
                   "column": 6
                 },
                 "end": {
-                  "line": 122,
+                  "line": 123,
                   "column": 7
                 }
               },
@@ -7601,11 +8170,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 128,
+                  "line": 129,
                   "column": 6
                 },
                 "end": {
-                  "line": 131,
+                  "line": 132,
                   "column": 7
                 }
               },
@@ -7628,11 +8197,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 137,
+                  "line": 138,
                   "column": 6
                 },
                 "end": {
-                  "line": 140,
+                  "line": 141,
                   "column": 7
                 }
               },
@@ -7655,11 +8224,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 150,
                   "column": 6
                 },
                 "end": {
-                  "line": 152,
+                  "line": 153,
                   "column": 7
                 }
               },
@@ -7682,11 +8251,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 161,
+                  "line": 162,
                   "column": 6
                 },
                 "end": {
-                  "line": 164,
+                  "line": 165,
                   "column": 7
                 }
               },
@@ -7709,11 +8278,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/field-base/src/delegate-focus-mixin.js",
                 "start": {
-                  "line": 207,
+                  "line": 208,
                   "column": 6
                 },
                 "end": {
-                  "line": 224,
+                  "line": 225,
                   "column": 7
                 }
               },
@@ -8305,11 +8874,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 537,
+                  "line": 584,
                   "column": 4
                 },
                 "end": {
-                  "line": 542,
+                  "line": 589,
                   "column": 5
                 }
               },
@@ -8349,11 +8918,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 553,
+                  "line": 600,
                   "column": 4
                 },
                 "end": {
-                  "line": 555,
+                  "line": 602,
                   "column": 5
                 }
               },
@@ -8387,11 +8956,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 566,
+                  "line": 613,
                   "column": 4
                 },
                 "end": {
-                  "line": 568,
+                  "line": 615,
                   "column": 5
                 }
               },
@@ -8516,11 +9085,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 583,
+                  "line": 588,
                   "column": 4
                 },
                 "end": {
-                  "line": 612,
+                  "line": 617,
                   "column": 5
                 }
               },
@@ -9007,11 +9576,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/property-accessors.js",
                 "start": {
-                  "line": 195,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 200,
+                  "line": 208,
                   "column": 5
                 }
               },
@@ -9040,11 +9609,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/property-accessors.js",
                 "start": {
-                  "line": 307,
+                  "line": 323,
                   "column": 4
                 },
                 "end": {
-                  "line": 309,
+                  "line": 325,
                   "column": 5
                 }
               },
@@ -9471,11 +10040,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 706,
+                  "line": 711,
                   "column": 4
                 },
                 "end": {
-                  "line": 715,
+                  "line": 720,
                   "column": 5
                 }
               },
@@ -10270,11 +10839,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 622,
+                  "line": 627,
                   "column": 4
                 },
                 "end": {
-                  "line": 624,
+                  "line": 629,
                   "column": 5
                 }
               },
@@ -10299,11 +10868,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 730,
+                  "line": 735,
                   "column": 4
                 },
                 "end": {
-                  "line": 755,
+                  "line": 760,
                   "column": 5
                 }
               },
@@ -10328,11 +10897,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 779,
+                  "line": 784,
                   "column": 4
                 },
                 "end": {
-                  "line": 783,
+                  "line": 788,
                   "column": 5
                 }
               },
@@ -10356,11 +10925,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 801,
+                  "line": 806,
                   "column": 4
                 },
                 "end": {
-                  "line": 806,
+                  "line": 811,
                   "column": 5
                 }
               },
@@ -10412,11 +10981,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -10429,16 +10998,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -10451,17 +11020,36 @@
               "inheritedFrom": "ThemableMixin"
             },
             {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
               "name": "_parseTemplate",
               "description": "Scans a template to produce template metadata.\n\nTemplate-specific metadata are stored in the object returned, and node-\nspecific metadata are stored in objects in its flattened `nodeInfoList`\narray.  Only nodes in the template that were parsed as nodes of\ninterest contain an object in `nodeInfoList`.  Each `nodeInfo` object\ncontains an `index` (`childNodes` index in parent) and optionally\n`parent`, which points to node info of its parent (including its index).\n\nThe template metadata object returned from this method has the following\nstructure (many fields optional):\n\n```js\n  {\n    // Flattened list of node metadata (for nodes that generated metadata)\n    nodeInfoList: [\n      {\n        // `id` attribute for any nodes with id's for generating `$` map\n        id: {string},\n        // `on-event=\"handler\"` metadata\n        events: [\n          {\n            name: {string},   // event name\n            value: {string},  // handler method name\n          }, ...\n        ],\n        // Notes when the template contained a `<slot>` for shady DOM\n        // optimization purposes\n        hasInsertionPoint: {boolean},\n        // For nested `<template>`` nodes, nested template metadata\n        templateInfo: {object}, // nested template metadata\n        // Metadata to allow efficient retrieval of instanced node\n        // corresponding to this metadata\n        parentInfo: {number},   // reference to parent nodeInfo>\n        parentIndex: {number},  // index in parent's `childNodes` collection\n        infoIndex: {number},    // index of this `nodeInfo` in `templateInfo.nodeInfoList`\n      },\n      ...\n    ],\n    // When true, the template had the `strip-whitespace` attribute\n    // or was nested in a template with that setting\n    stripWhitespace: {boolean},\n    // For nested templates, nested template content is moved into\n    // a document fragment stored here; this is an optimization to\n    // avoid the cost of nested template cloning\n    content: {DocumentFragment}\n  }\n```\n\nThis method kicks off a recursive treewalk as follows:\n\n```\n   _parseTemplate <---------------------+\n     _parseTemplateContent              |\n       _parseTemplateNode  <------------|--+\n         _parseTemplateNestedTemplate --+  |\n         _parseTemplateChildNodes ---------+\n         _parseTemplateNodeAttributes\n           _parseTemplateNodeAttribute\n\n```\n\nThese methods may be overridden to add custom metadata about templates\nto either `templateInfo` or `nodeInfo`.\n\nNote that this method may be destructive to the template, in that\ne.g. event annotations may be removed after being noted in the\ntemplate metadata.",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 247,
+                  "line": 294,
                   "column": 4
                 },
                 "end": {
-                  "line": 262,
+                  "line": 309,
                   "column": 5
                 }
               },
@@ -10491,11 +11079,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 821,
+                  "line": 826,
                   "column": 4
                 },
                 "end": {
-                  "line": 827,
+                  "line": 832,
                   "column": 5
                 }
               },
@@ -10569,11 +11157,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 327,
+                  "line": 374,
                   "column": 4
                 },
                 "end": {
-                  "line": 365,
+                  "line": 412,
                   "column": 5
                 }
               },
@@ -10646,11 +11234,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 408,
+                  "line": 455,
                   "column": 4
                 },
                 "end": {
-                  "line": 417,
+                  "line": 464,
                   "column": 5
                 }
               },
@@ -10734,11 +11322,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/template-stamp.js",
                 "start": {
-                  "line": 465,
+                  "line": 512,
                   "column": 4
                 },
                 "end": {
-                  "line": 468,
+                  "line": 515,
                   "column": 5
                 }
               },
@@ -10849,11 +11437,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/property-accessors.js",
                 "start": {
-                  "line": 126,
+                  "line": 134,
                   "column": 4
                 },
                 "end": {
-                  "line": 131,
+                  "line": 139,
                   "column": 5
                 }
               },
@@ -11137,11 +11725,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 841,
+                  "line": 846,
                   "column": 4
                 },
                 "end": {
-                  "line": 866,
+                  "line": 871,
                   "column": 5
                 }
               },
@@ -11340,11 +11928,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 635,
+                  "line": 640,
                   "column": 4
                 },
                 "end": {
-                  "line": 637,
+                  "line": 642,
                   "column": 5
                 }
               },
@@ -11374,11 +11962,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",
                 "start": {
-                  "line": 649,
+                  "line": 654,
                   "column": 4
                 },
                 "end": {
-                  "line": 660,
+                  "line": 665,
                   "column": 5
                 }
               },
@@ -11599,7 +12187,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -11619,11 +12207,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -11665,11 +12277,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -11685,13 +12297,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -11710,7 +12322,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -11719,11 +12331,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -11741,11 +12353,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -11773,11 +12385,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -11805,11 +12417,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -11832,11 +12444,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -11859,11 +12471,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -11879,6 +12491,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "_setColorFromPalette",
@@ -11938,11 +12576,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -11955,16 +12593,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -11974,6 +12612,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -12041,7 +12698,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -12061,11 +12718,35 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -12129,11 +12810,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -12149,13 +12830,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -12174,7 +12855,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -12183,11 +12864,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -12205,11 +12886,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -12237,11 +12918,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -12269,11 +12950,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -12296,11 +12977,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -12323,11 +13004,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -12343,6 +13024,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             }
           ],
           "staticMethods": [
@@ -12353,11 +13060,11 @@
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -12370,16 +13077,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -12389,6 +13096,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],
@@ -12472,7 +13198,7 @@
                   "column": 8
                 },
                 "end": {
-                  "line": 51,
+                  "line": 59,
                   "column": 9
                 }
               },
@@ -12492,11 +13218,35 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
                 "start": {
-                  "line": 29,
+                  "line": 31,
                   "column": 8
                 },
                 "end": {
-                  "line": 32,
+                  "line": 35,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"__deprecatedThemePropertyChanged\"",
+                  "attributeType": "String"
+                }
+              },
+              "inheritedFrom": "ThemePropertyMixin"
+            },
+            {
+              "name": "_theme",
+              "type": "string | null | undefined",
+              "description": "Helper property with theme attribute value facilitating propagation\nin shadow DOM.\n\nEnables the component implementation to propagate the `theme`\nattribute value to the sub-components in Shadow DOM by binding\nthe sub-component’s \"theme\" attribute to the `theme` property of\nthe host.\n\n**NOTE:** Extending the mixin only provides the property for binding,\nand does not make the propagation alone.\n\nSee [Styling Components: Sub-components](https://vaadin.com/docs/latest/ds/customization/styling-components/#sub-components).\npage for more information.",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 54,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
                   "column": 9
                 }
               },
@@ -12870,11 +13620,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 65,
+                  "line": 73,
                   "column": 4
                 },
                 "end": {
-                  "line": 72,
+                  "line": 80,
                   "column": 5
                 }
               },
@@ -12890,13 +13640,13 @@
               "description": "",
               "privacy": "protected",
               "sourceRange": {
-                "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 37,
+                  "line": 83,
                   "column": 4
                 },
                 "end": {
-                  "line": 43,
+                  "line": 104,
                   "column": 5
                 }
               },
@@ -12915,7 +13665,7 @@
               "return": {
                 "type": "void"
               },
-              "inheritedFrom": "ThemePropertyMixin"
+              "inheritedFrom": "DirMixin"
             },
             {
               "name": "disconnectedCallback",
@@ -12924,11 +13674,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 99,
+                  "line": 107,
                   "column": 4
                 },
                 "end": {
-                  "line": 103,
+                  "line": 111,
                   "column": 5
                 }
               },
@@ -12946,11 +13696,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 106,
+                  "line": 114,
                   "column": 4
                 },
                 "end": {
-                  "line": 113,
+                  "line": 121,
                   "column": 5
                 }
               },
@@ -12978,11 +13728,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 116,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 124,
+                  "line": 132,
                   "column": 5
                 }
               },
@@ -13010,11 +13760,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 127,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 133,
+                  "line": 143,
                   "column": 5
                 }
               },
@@ -13037,11 +13787,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 140,
+                  "line": 150,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 152,
                   "column": 5
                 }
               },
@@ -13064,11 +13814,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/component-base/src/dir-mixin.js",
                 "start": {
-                  "line": 149,
+                  "line": 159,
                   "column": 4
                 },
                 "end": {
-                  "line": 151,
+                  "line": 161,
                   "column": 5
                 }
               },
@@ -13084,6 +13834,32 @@
                 }
               ],
               "inheritedFrom": "DirMixin"
+            },
+            {
+              "name": "__deprecatedThemePropertyChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js",
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "theme"
+                }
+              ],
+              "return": {
+                "type": "void"
+              },
+              "inheritedFrom": "ThemePropertyMixin"
             },
             {
               "name": "ready",
@@ -13228,11 +14004,11 @@
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 193,
+                  "line": 203,
                   "column": 4
                 },
                 "end": {
-                  "line": 209,
+                  "line": 217,
                   "column": 5
                 }
               },
@@ -13245,16 +14021,16 @@
             },
             {
               "name": "finalizeStyles",
-              "description": "Covers LitElement based component styling\n\nNOTE: This is not yet an offically supported API!\n\nTODO: Add tests (run a variation of themable-mixin.test.js where the components get created as LitElements)",
+              "description": "Covers LitElement based component styling",
               "privacy": "protected",
               "sourceRange": {
                 "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
                 "start": {
-                  "line": 219,
+                  "line": 224,
                   "column": 4
                 },
                 "end": {
-                  "line": 226,
+                  "line": 230,
                   "column": 5
                 }
               },
@@ -13264,6 +14040,25 @@
                   "name": "styles"
                 }
               ],
+              "inheritedFrom": "ThemableMixin"
+            },
+            {
+              "name": "getStylesForThis",
+              "description": "Get styles for the component type",
+              "privacy": "private",
+              "sourceRange": {
+                "file": "../node_modules/%40vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js",
+                "start": {
+                  "line": 237,
+                  "column": 4
+                },
+                "end": {
+                  "line": 244,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
               "inheritedFrom": "ThemableMixin"
             }
           ],

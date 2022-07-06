@@ -48,14 +48,14 @@
     "@polymer/iron-resizable-behavior": "^3.0.1",
     "@polymer/polymer": "^3.4.1",
     "@thebespokepixel/es-tinycolor": "^1.0.7",
-    "@vaadin/button": "^23.0.0",
-    "@vaadin/checkbox": "^23.0.0",
-    "@vaadin/field-base": "^23.0.0",
-    "@vaadin/component-base": "^23.0.0",
-    "@vaadin/icons": "^23.0.0",
-    "@vaadin/tabs": "^23.0.0",
-    "@vaadin/text-field": "^23.0.0",
-    "@vaadin/number-field": "^23.0.0",
-    "@vaadin/vaadin-themable-mixin": "^23.0.0"
+    "@vaadin/button": "^23.1.0",
+    "@vaadin/checkbox": "^23.1.0",
+    "@vaadin/field-base": "^23.1.0",
+    "@vaadin/component-base": "^23.1.0",
+    "@vaadin/icons": "^23.1.0",
+    "@vaadin/tabs": "^23.1.0",
+    "@vaadin/text-field": "^23.1.0",
+    "@vaadin/number-field": "^23.1.0",
+    "@vaadin/vaadin-themable-mixin": "^23.1.0"
   }
 }
