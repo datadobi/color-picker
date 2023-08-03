@@ -44,7 +44,7 @@ class ColorCheckboxElement extends Checkbox {
       const div = document.createElement('div');
       div.setAttribute('part', 'color-backdrop');
 
-      memoizedTemplate.content.querySelector('label').prepend(div);
+      memoizedTemplate.content.querySelector('[name="label"]').prepend(div);
     }
     return memoizedTemplate;
   }

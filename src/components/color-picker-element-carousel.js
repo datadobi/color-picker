@@ -61,7 +61,7 @@ class ElementCarouselElement extends ElementMixin(ThemableMixin(Vaadin.DisabledP
                      on-click="_displayNextElement"
                      part="switch-button"
                      theme$="icon [[theme]]">
-        <iron-icon icon="vaadin:sort" slot="prefix"></iron-icon>
+        <vaadin-icon icon="vaadin:sort" slot="prefix"></vaadin-icon>
       </vaadin-button>
     </div>
  `;

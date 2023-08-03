@@ -1,6 +1,5 @@
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
-import {ShadowFocusMixin} from '@vaadin/field-base';
 import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 import '../components/color-picker-responsive-canvas.js';
 import '../utils/vaadin-disabled-property-mixin.js';
@@ -21,7 +20,7 @@ import ColorPickerUtils from '../utils/color-picker-utils';
  * @mixes Vaadin.DisabledPropertyMixin
  * @mixes Polymer.IronResizableBehavior
  */
-class ColorSliderElement extends ElementMixin(ShadowFocusMixin(ThemableMixin(mixinBehaviors([IronResizableBehavior], PolymerElement)))) {
+class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([IronResizableBehavior], PolymerElement))) {
   static get template() {
     return html`
     <style include="color-picker-color-slider-styles">

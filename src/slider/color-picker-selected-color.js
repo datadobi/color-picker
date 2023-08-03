@@ -1,6 +1,6 @@
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
-import '@polymer/iron-icon';
+import '@vaadin/icon';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-has-color-value-mixin.js';
 import '../utils/color-picker-utils.js';
@@ -68,7 +68,7 @@ class SelectedColorElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPro
                        on-click="_resetToPreviousValue"
                        part="previous-color-canvas"
                        render-callback="[[_renderPreviousColor(previousValue)]]">
-      <iron-icon icon="vaadin:check" part="previous-icon"></iron-icon>
+      <vaadin-icon icon="vaadin:check" part="previous-icon"></vaadin-icon>
     </responsive-canvas>
   `;
   }
