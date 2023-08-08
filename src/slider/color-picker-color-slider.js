@@ -79,7 +79,7 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
   }
 
   static get version() {
-    return '2.0.0-beta.4-datadobi8';
+    return '2.1.0-datadobi1';
   }
 
   static get properties() {
