@@ -1,132 +1,89 @@
-import {html, PolymerElement} from '@polymer/polymer';
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/component-base';
-import '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import '@vaadin/button/src/vaadin-button.js';
+import { html, LitElement, css } from 'lit';
+import '@vaadin/button';
+import '@vaadin/icon';
+import '@vaadin/icons';
 import '../utils/vaadin-disabled-property-mixin.js';
-import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer';
 import ColorPickerUtils from '../utils/color-picker-utils';
+import { sharedStyles } from '../styles/shared-styles.js';
 
 /**
- * `<element-carousel>` allows to switch between elements and display one of them at a time.
- * Additionally all elements can be displayed at once.
- *
- * ```
- * <element-carousel>
- *   <div>Content 1</div>
- *   <div>Content 2</div>
- *   <div>Content 3</div>
- * <element-carousel>
- * ```
- *
- * If an element has the attribute `disable-for-switch` it will be hidden and ignored in the
- * carousel. This is useful if using the e.g. with `<dom-repeat>` as it is rendered inside
- * the carousel.
- *
- * ```
- * <element-carousel>
- *   <dom-repeat items="{{items}}" disable-for-switch>
- *     <template>
- *       <div>[[index]]</div>
- *     </template>
- *   </dom-repeat>
- * <element-carousel>
- * ```
+ * `<element-carousel>` switches between slotted elements, showing one at a time.
+ * When `pinned` is true, all elements are shown simultaneously.
  *
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
  */
+class ElementCarouselElement extends Vaadin.DisabledPropertyMixin(LitElement) {
 
-class ElementCarouselElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPropertyMixin(PolymerElement))) {
-
-  static get template() {
-    return html`
-    <style include="color-picker-shared-styles">
-      [part="switch-button"] {
-        flex-grow: 0 !important;
-        align-self: var(--switch-button-alignment, flex-end);
-        padding: 0;
-      }
-      #slot,
-      #slot::slotted(*:not([hidden])) {
+  static styles = [sharedStyles, css`
+    :host {
       display: block;
-      }
-      </style>
-      <div class="horizontal-spacing" style="min-width: 100%;align-items: flex-start">
-        <slot id="slot" spacing$="[[spacing]]"></slot>
-      <vaadin-button disabled$="[[disabled]]"
-                     hidden$="[[!_showSwitchButton]]"
-                     on-click="_displayNextElement"
-                     part="switch-button"
-                     theme$="icon [[theme]]">
-        <vaadin-icon icon="vaadin:sort" slot="prefix"></vaadin-icon>
-      </vaadin-button>
-    </div>
- `;
+    }
+
+    [part="switch-button"] {
+      flex-grow: 0 !important;
+      align-self: var(--switch-button-alignment, flex-end);
+      padding: 0;
+    }
+
+    #slot {
+      display: block;
+      flex: 1;
+      min-width: 0;
+    }
+
+    #slot::slotted(*:not([hidden])) {
+      display: block;
+    }
+  `];
+
+  render() {
+    return html`
+      <div class="horizontal-spacing" style="min-width: 100%; align-items: flex-start">
+        <slot id="slot"></slot>
+        <vaadin-button ?disabled="${this.disabled}"
+                       ?hidden="${!this._showSwitchButton}"
+                       @click="${this._displayNextElement}"
+                       part="switch-button"
+                       theme="icon ${this.theme || ''}">
+          <vaadin-icon icon="vaadin:sort"></vaadin-icon>
+        </vaadin-button>
+      </div>
+    `;
   }
 
   static get is() {
     return 'element-carousel';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
+  static properties = {
+    theme: { type: String, reflect: true },
+    pinned: { type: Boolean },
+    displayedElementIndex: { type: Number },
+    _slotElements: { type: Array, state: true },
+    _showSwitchButton: { type: Boolean, state: true }
+  };
+
+  constructor() {
+    super();
+    this.pinned = false;
+    this.displayedElementIndex = 0;
+    this._slotElements = [];
+    this._showSwitchButton = false;
   }
 
-  static get properties() {
-    return {
-      /**
-       * Switch between showing all elements at once or just a single element.
-       */
-      pinned: {
-        type: Boolean,
-        value: false,
-        observer: '_refreshElementVisibility'
-      },
-      /**
-       * The index of the currently displayed element.
-       */
-      displayedElementIndex: {
-        type: Number,
-        value: 0,
-        notify: true,
-        readOnly: true
-      },
-      /**
-       * @private
-       */
-      _slotElements: {
-        type: Array,
-        observer: '_refreshElementVisibility'
-      },
-      /**
-       * @private
-       */
-      _showSwitchButton: {
-        type: Boolean,
-        value: false
-      }
-    };
-  }
-
-  /**
-   * @protected
-   */
-  connectedCallback() {
-    super.connectedCallback();
+  firstUpdated() {
+    const slot = this.shadowRoot.querySelector('#slot');
 
     this._enabledMutationObserver = new MutationObserver(mutations => {
-      if (mutations.filter(mutation => mutation.type === 'attributes').length > 0) {
+      if (mutations.some(m => m.type === 'attributes')) {
         this._refreshElementVisibility();
       }
     });
 
-    this._slotObserver = new FlattenedNodesObserver(this.$.slot, () => {
+    slot.addEventListener('slotchange', () => {
       this._enabledMutationObserver.disconnect();
 
-      this._slotElements = this.$.slot.assignedNodes().filter(n => n.nodeType === Node.ELEMENT_NODE);
+      this._slotElements = slot.assignedNodes().filter(n => n.nodeType === Node.ELEMENT_NODE);
 
       this._slotElements.forEach(element => {
         this._enabledMutationObserver.observe(element, {
@@ -134,49 +91,40 @@ class ElementCarouselElement extends ElementMixin(ThemableMixin(Vaadin.DisabledP
           attributeFilter: ['disable-for-switch']
         });
       });
+
+      this._refreshElementVisibility();
     });
   }
 
-  /**
-   * @protected
-   */
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    this._slotObserver.disconnect();
-    this._enabledMutationObserver.disconnect();
+    this._enabledMutationObserver?.disconnect();
   }
 
-  /**
-   * Refreshes the visibility of the elements.
-   *
-   * @private
-   */
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('pinned') || changedProperties.has('_slotElements')) {
+      this._refreshElementVisibility();
+    }
+  }
+
   _refreshElementVisibility() {
     this._displayIndex(this.displayedElementIndex);
   }
 
-  /**
-   * Try to display the element at the given index.
-   * If the element at the index is not relevant, increase the index until an element to be
-   * displayed is found.
-   *
-   * @param index The index of the element to display
-   * @private
-   */
   _displayIndex(index) {
-    if (!(this._slotElements && this._slotElements.length)) {
-      return;
-    }
+    if (!this._slotElements?.length) return;
 
     this._slotElements.forEach(element => {
-      ColorPickerUtils.conditionallySetAttribute(element, !(this.pinned && this._isElementRelevant(element)), 'hidden');
+      ColorPickerUtils.conditionallySetAttribute(
+        element,
+        !(this.pinned && this._isElementRelevant(element)),
+        'hidden'
+      );
     });
 
-    const enabledElementsCount = this._slotElements.filter(element => this._isElementRelevant(element)).length;
-    if (!enabledElementsCount > 0) {
-      return;
-    }
+    const enabledElements = this._slotElements.filter(el => this._isElementRelevant(el));
+    if (!enabledElements.length) return;
 
     let elementIndex = index % this._slotElements.length;
     while (!this._isElementRelevant(this._slotElements[elementIndex])) {
@@ -184,25 +132,17 @@ class ElementCarouselElement extends ElementMixin(ThemableMixin(Vaadin.DisabledP
     }
 
     this._slotElements[elementIndex].removeAttribute('hidden');
-    this._setDisplayedElementIndex(elementIndex);
-    this._showSwitchButton = !this.pinned && enabledElementsCount > 1;
+    this.displayedElementIndex = elementIndex;
+    this.dispatchEvent(new CustomEvent('displayed-element-index-changed', {
+      detail: { value: elementIndex }
+    }));
+    this._showSwitchButton = !this.pinned && enabledElements.length > 1;
   }
 
-  // noinspection JSMethodCanBeStatic
-  /**
-   * Check if an element is enabled for the carousel.
-   * @param element The element to check
-   * @returns {boolean} `true` if the element is relevant, `false` else
-   * @private
-   */
   _isElementRelevant(element) {
     return !element.hasAttribute('disable-for-switch');
   }
 
-  /**
-   * Shows the next element in the carousel.
-   * @private
-   */
   _displayNextElement() {
     this._displayIndex(this.displayedElementIndex + 1);
   }
@@ -210,9 +150,6 @@ class ElementCarouselElement extends ElementMixin(ThemableMixin(Vaadin.DisabledP
 
 customElements.define(ElementCarouselElement.is, ElementCarouselElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.ElementCarouselElement = ElementCarouselElement;

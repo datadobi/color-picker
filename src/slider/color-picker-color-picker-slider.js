@@ -1,28 +1,21 @@
-import {html, PolymerElement} from '@polymer/polymer';
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/component-base';
-import {tinycolor} from '@thebespokepixel/es-tinycolor';
+import { html, LitElement, css } from 'lit';
+import { TinyColor } from '@ctrl/tinycolor';
 import './color-picker-sl-slider.js';
 import './color-picker-hue-slider.js';
 import './color-picker-alpha-slider.js';
 import './color-picker-selected-color.js';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-has-color-value-mixin.js';
+import { sharedStyles } from '../styles/shared-styles.js';
 
 /**
- * `<color-picker-slider>` allows to select a color from sliders.
+ * `<color-picker-slider>` allows selecting a color using sliders.
  *
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
- * @mixes Vaadin.ColorPicker.HasColorValueMixin
  */
-class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(PolymerElement)))) {
+class ColorPickerSliderElement extends Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(LitElement)) {
 
-  static get template() {
-    return html`
-    <style include="color-picker-shared-styles">
+  static styles = [sharedStyles, css`
       :host {
         display: flex;
       }
@@ -34,145 +27,103 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
       selected-color {
         flex-grow: 0 !important;
       }
-    </style>
+    `];
 
-    <div class="vertical-spacing">
-      <sl-slider disabled$="[[disabled]]"
-                 hidden$="[[disableSl]]"
-                 hue="[[_hue]]"
-                 step-x="[[_stepSl(stepHsl)]]"
-                 step-y="[[_stepSl(stepHsl)]]"
-                 theme$="[[theme]]"
-                 value-x="{{_saturation}}"
-                 value-y="{{_value}}"></sl-slider>
-      <div class="horizontal-spacing" style="align-self: stretch;align-items: center;flex-grow: 0;">
-        <selected-color disabled$="[[disabled]]"
-                        previous-value="[[previousValue]]"
-                        value="{{value}}"></selected-color>
-        <div class="vertical-spacing">
-          <hue-slider disabled$="[[disabled]]"
-                      id="hueSlider"
-                      step-x="[[stepHsl]]"
-                      theme$="[[theme]]"
-                      value-x="{{_hue}}"></hue-slider>
-          <alpha-slider disabled$="[[disabled]]"
-                        hidden$="[[disableAlpha]]"
-                        hue="[[_hue]]"
-                        id="alphaSlider"
-                        step-x="[[stepAlpha]]"
-                        theme$="[[theme]]"
-                        value="[[_value]]"
-                        value-x="{{_alpha}}"></alpha-slider>
+  render() {
+    return html`
+      <div class="vertical-spacing">
+        <sl-slider ?disabled="${this.disabled}"
+                   ?hidden="${this.disableSl}"
+                   .hue="${this._hue}"
+                   .stepX="${this._stepSl()}"
+                   .stepY="${this._stepSl()}"
+                   theme="${this.theme}"
+                   .valueX="${this._saturation}"
+                   @value-x-changed="${(e) => { this._saturation = e.detail.value; this._sliderColorChanged(); }}"
+                   .valueY="${this._value}"
+                   @value-y-changed="${(e) => { this._value = e.detail.value; this._sliderColorChanged(); }}">
+        </sl-slider>
+        <div class="horizontal-spacing" style="align-self: stretch; align-items: center; flex-grow: 0;">
+          <selected-color ?disabled="${this.disabled}"
+                          .previousValue="${this.previousValue}"
+                          .value="${this.value}"
+                          @value-changed="${(e) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.value } })); }}">
+          </selected-color>
+          <div class="vertical-spacing">
+            <hue-slider ?disabled="${this.disabled}"
+                        .stepX="${this.stepHsl}"
+                        theme="${this.theme}"
+                        .valueX="${this._hue}"
+                        @value-x-changed="${(e) => { this._hue = e.detail.value; this._sliderColorChanged(); }}">
+            </hue-slider>
+            <alpha-slider ?disabled="${this.disabled}"
+                          ?hidden="${this.disableAlpha}"
+                          .hue="${this._hue}"
+                          .stepX="${this.stepAlpha}"
+                          theme="${this.theme}"
+                          .value="${this._value}"
+                          .valueX="${this._alpha}"
+                          @value-x-changed="${(e) => { this._alpha = e.detail.value; this._sliderColorChanged(); }}">
+            </alpha-slider>
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
   }
 
   static get is() {
     return 'color-picker-slider';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
+  static properties = {
+    theme: { type: String, reflect: true },
+    previousValue: { type: Object },
+    disableAlpha: { type: Boolean },
+    disableSl: { type: Boolean },
+    stepAlpha: { type: Number },
+    stepHsl: { type: Number },
+    _hue: { type: Number, state: true },
+    _saturation: { type: Number, state: true },
+    _value: { type: Number, state: true },
+    _alpha: { type: Number, state: true }
+  };
+
+  constructor() {
+    super();
+    this.disableAlpha = false;
+    this.disableSl = false;
+    this.stepAlpha = 0.01;
+    this.stepHsl = 1;
+    this._hue = 0;
+    this._saturation = 1;
+    this._value = 1;
+    this._alpha = 1;
   }
 
-  static get properties() {
-    return {
-      /**
-       * The previous value.
-       */
-      previousValue: Object,
-      /**
-       * Disable the input of **alpha** values.
-       */
-      disableAlpha: {
-        type: Boolean,
-        value: false
-      },
-      /**
-       * Set to true to disable **sl** slider.
-       */
-      disableSl: {
-        type: Boolean,
-        value: false
-      },
-      /**
-       * Allowed number o intervals on the **alpha** value
-       */
-      stepAlpha: {
-        type: Number,
-        value: 0.01
-      },
-      /**
-       * Allowed number o intervals on the **hsl** value
-       */
-      stepHsl: {
-        type: Number,
-        value: 1
-      },
-      /**
-       * The current hue in the range `[0 - 360]`.
-       */
-      _hue: {
-        type: Number,
-        value: 0,
-        observer: '_sliderColorChanged'
-      },
-      /**
-       * The current saturation in the range `[0 - 1]`.
-       */
-      _saturation: {
-        type: Number,
-        value: 1,
-        observer: '_sliderColorChanged'
-      },
-      /**
-       * The current value in the range `[0 - 1]`.
-       */
-      _value: {
-        type: Number,
-        value: 1,
-        observer: '_sliderColorChanged'
-      },
-      /**
-       * The current alpha in the range `[0 - 1]`.
-       */
-      _alpha: {
-        type: Number,
-        value: 1,
-        observer: '_sliderColorChanged'
-      }
-    };
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('value')) {
+      this._valueChanged();
+    }
   }
 
-  /**
-   * @protected
-   */
-  ready() {
-    super.ready();
-    this._createPropertyObserver('value', '_valueChanged', true);
-  }
-
-  /**
-   * Update the color value if the slider values changed.
-   * @private
-   */
   _sliderColorChanged() {
     this._colorChanged(() => {
-      this.value = tinycolor({h: this._hue, s: this._saturation, v: this._value}).setAlpha(this._alpha);
+      this.value = new TinyColor({ h: this._hue, s: this._saturation, v: this._value }).setAlpha(this._alpha);
+      this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.value } }));
     });
   }
 
-  /**
-   * Update the slider values if the color value changed.
-   * @private
-   */
   _valueChanged() {
     this._colorChanged(() => {
       if (this.value) {
         const hsv = this.value.toHsv();
-        this._hue = hsv.h;
+        // Only update hue when the color has saturation — for achromatic colors
+        // (grey, black, white) TinyColor always returns h=0, which would snap the
+        // hue slider back on every round-trip through the value binding.
+        if (hsv.s > 0) {
+          this._hue = hsv.h;
+        }
         this._saturation = hsv.s;
         this._value = hsv.v;
         this._alpha = hsv.a;
@@ -185,11 +136,6 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
     });
   }
 
-  /**
-   * Prevent endless recursion.
-   * @param updateAction
-   * @private
-   */
   _colorChanged(updateAction) {
     if (!this._updatingColor) {
       this._updatingColor = true;
@@ -205,9 +151,6 @@ class ColorPickerSliderElement extends ElementMixin(ThemableMixin(Vaadin.Disable
 
 customElements.define(ColorPickerSliderElement.is, ColorPickerSliderElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.ColorPickerSliderElement = ColorPickerSliderElement;

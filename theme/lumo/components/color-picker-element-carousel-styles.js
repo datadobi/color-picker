@@ -1,2 +1,3 @@
-import '@vaadin/icons/vaadin-icons.js';
-import '@vaadin/button/vaadin-button.js';
+import '@vaadin/icons';
+import '@vaadin/button';
+

@@ -1,80 +1,70 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
-import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
+import { css } from 'lit';
 import './color-picker-color-slider.js';
-import {tinycolor} from '@thebespokepixel/es-tinycolor';
+import { TinyColor } from '@ctrl/tinycolor';
 
 /**
- * `<alpha-slider>` is an element that allows to select an **alpha** value using a slider.
+ * `<alpha-slider>` selects an **alpha** value using a slider.
  *
  * @memberof Vaadin.ColorPicker
  */
-class AlphaSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.ColorSliderElement)) {
+class AlphaSliderElement extends Vaadin.ColorPicker.ColorSliderElement {
+
+  static styles = [
+    super.styles,
+    css`
+      :host {
+        --responsive-canvas-background:
+          conic-gradient(
+            var(--color-picker-alpha-checkerboard-foreground-color, rgba(0,0,0,.2)) 90deg,
+            var(--color-picker-alpha-checkerboard-background-color, #fff) 90deg 180deg,
+            var(--color-picker-alpha-checkerboard-foreground-color, rgba(0,0,0,.2)) 180deg 270deg,
+            var(--color-picker-alpha-checkerboard-background-color, #fff) 270deg
+          )
+          0 0 / var(--color-picker-alpha-checkerboard-tile-size, 1.125rem)
+               var(--color-picker-alpha-checkerboard-tile-size, 1.125rem);
+      }
+    `
+  ];
 
   static get is() {
     return 'alpha-slider';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
-  }
+  static properties = {
+    hue: { type: Number },
+    value: { type: Number }
+  };
 
-  static get properties() {
-    return {
-      /**
-       * The **h**sv-hue of the color to show as background in the range `[0 - 360]`.
-       */
-      hue: {
-        type: Number,
-        value: 0
-      },
-      /**
-       * The hs**v**-value of the color to show as background in the range `[0 - 1]`.
-       */
-      value: {
-        type: Number,
-        value: 1
-      }
-    };
-  }
-
-  /**
-   * @constructor
-   */
   constructor() {
     super();
+    this.hue = 0;
+    this.value = 1;
 
-    this.renderCallback = this._renderAlpha();
     this.enableX = true;
     this.minX = 0;
     this.maxX = 1;
     this.stepX = 0.01;
+
+    this.renderCallback = this._renderAlpha();
   }
 
-  /**
-   * @protected
-   */
-  ready() {
-    super.ready();
-
-    this._createPropertyObserver('hue', 'renderCanvas', true);
-    this._createPropertyObserver('value', 'renderCanvas', true);
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('hue') || changedProperties.has('value')) {
+      this.renderCanvas();
+    }
   }
 
-  /**
-   * The render callback for the background depending on the current hue.
-   * @returns {Function}
-   * @private
-   */
   _renderAlpha() {
     return (canvas) => {
       const ctx = canvas.getContext('2d');
       const width = canvas.scrollWidth;
       const height = canvas.scrollHeight;
-      const hsv = tinycolor({h: this.hue || 0, s: 1, v: this.value});
+      const hsv = new TinyColor({ h: this.hue || 0, s: 1, v: this.value });
 
       const gradient = ctx.createLinearGradient(0, 0, width, 0);
-      gradient.addColorStop(0, hsv.setAlpha(0).toRgbString());
-      gradient.addColorStop(1, hsv.setAlpha(1).toRgbString());
+      gradient.addColorStop(0, hsv.clone().setAlpha(0).toRgbString());
+      gradient.addColorStop(1, hsv.clone().setAlpha(1).toRgbString());
 
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = gradient;
@@ -85,9 +75,6 @@ class AlphaSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.C
 
 customElements.define(AlphaSliderElement.is, AlphaSliderElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.AlphaSliderElement = AlphaSliderElement;

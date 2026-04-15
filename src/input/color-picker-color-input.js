@@ -1,104 +1,57 @@
-import {PolymerElement} from '@polymer/polymer';
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/component-base';
+import { LitElement } from 'lit';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-has-color-value-mixin.js';
 
 /**
- * `ColorInputElement` is an extendable base class for all inputs regarding color.
+ * `ColorInputElement` is an abstract base class for all color inputs.
  *
- * It handles the setting and converting the value from the input and from
- * outside without causing stack overflows due to endless recursions.
+ * Subclasses must set in their constructor:
+ *   - `this._observedInputProperties` (array of property names)
+ *   - `this._colorSupplier` (function returning a TinyColor)
+ *   - `this._toInputConverter` (function converting TinyColor to input fields)
  *
  * @abstract
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
- * @mixes Vaadin.ColorPicker.HasColorValueMixin
  */
-class ColorInputElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(PolymerElement)))) {
+class ColorInputElement extends Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(LitElement)) {
 
   static get is() {
     return 'color-input';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
+  static properties = {
+    theme: { type: String, reflect: true },
+    disableAlpha: { type: Boolean }
+  };
+
+  constructor() {
+    super();
+    this._observedInputProperties = [];
+    this.disableAlpha = false;
   }
 
-  static get properties() {
-    return {
-      /**
-       * The supplier function that is called if one of the `_observedInputProperties` is
-       * changed and the `value` property should be updated.
-       *
-       * Should return a valid [TinyColor](https://github.com/bgrins/TinyColor|TinyColor)
-       * color, e.g.:
-       *
-       * ```() => tinycolor('rgb(255, 255, 255)')```
-       *
-       * @abstract
-       */
-      _colorSupplier: Function,
-      /**
-       * The converter function that is called if the `value` property changed and the inputs
-       * should be updated.
-       *
-       * Should consume the [tinycolor](https://github.com/bgrins/TinyColor|TinyColor) `value`
-       * as an argument, e.g.:
-       *
-       * ```value => console.info(value)```
-       *
-       * @abstract
-       */
-      _toInputConverter: Function,
-      /**
-       * The properties that should trigger a call to `_colorSupplier` as the color has
-       * changed from the input side.
-       *
-       * @abstract
-       */
-      _observedInputProperties: {
-        type: Array,
-        value: []
-      },
-      /**
-       * Show and handle alpha values in the input.
-       */
-      disableAlpha: {
-        type: Boolean,
-        value: false
-      }
-    };
+  updated(changedProperties) {
+    super.updated(changedProperties);
+
+    if (changedProperties.has('value')) {
+      this._updateInput();
+    }
+
+    if (this._observedInputProperties.some(p => changedProperties.has(p))) {
+      this._updateColor();
+    }
   }
 
-  /**
-   * @protected
-   */
-  ready() {
-    super.ready();
-
-    this._createPropertyObserver('value', '_updateInput', true);
-    this._observedInputProperties.forEach(p => this._createPropertyObserver(p, '_updateColor', true));
-  }
-
-  /**
-   * Update the input with the new `value`.
-   * @private
-   */
   _updateInput() {
     if (!this._updatingColor) {
       this._updatingColor = true;
-      this._toInputConverter(this.value);
+      if (this._toInputConverter) {
+        this._toInputConverter(this.value);
+      }
       this._updatingColor = false;
     }
   }
 
-  /**
-   * Update the `value` from the input.
-   * @private
-   */
   _updateColor() {
     if (!this._updatingColor) {
       this._updatingColor = true;
@@ -107,11 +60,12 @@ class ColorInputElement extends ElementMixin(ThemableMixin(Vaadin.DisabledProper
       try {
         color = this._colorSupplier();
       } catch (unused) {
-        // Nothing to do here, invalid value
+        // invalid value — keep existing
       }
 
-      if (color.isValid()) {
+      if (color && color.isValid) {
         this.value = color;
+        this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.value } }));
       }
 
       this._updatingColor = false;
@@ -121,9 +75,6 @@ class ColorInputElement extends ElementMixin(ThemableMixin(Vaadin.DisabledProper
 
 customElements.define(ColorInputElement.is, ColorInputElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.ColorInputElement = ColorInputElement;

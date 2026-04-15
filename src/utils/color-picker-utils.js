@@ -1,4 +1,4 @@
-import {tinycolor} from '@thebespokepixel/es-tinycolor';
+import { TinyColor } from '@ctrl/tinycolor';
 
 // eslint-disable-next-line no-unused-vars
 class ColorPickerUtils {
@@ -23,7 +23,7 @@ class ColorPickerUtils {
 
   static getContrastColor(color) {
     const hsl = color.toHsl();
-    const contrastColor = tinycolor({h: hsl.h, s: 1, l: .5});
+    const contrastColor = new TinyColor({ h: hsl.h, s: 1, l: .5 });
 
     if (color.getLuminance() >= 0.5 || color.getAlpha() <= 0.5) {
       return contrastColor.darken(color.getAlpha() <= 0.5 && color.getLuminance() <= 0.5 ? 10 : 20).toRgbString();
@@ -33,7 +33,7 @@ class ColorPickerUtils {
   }
 
   static getFormattedColor(color, format, stepAlpha, step) {
-    const colorInternal = color.setAlpha(ColorPickerUtils.roundToNearest(color.getAlpha(), stepAlpha));
+    const colorInternal = color.clone().setAlpha(ColorPickerUtils.roundToNearest(color.getAlpha(), stepAlpha));
 
     if ('hex' === format) {
       return colorInternal.getAlpha() === 1 ? colorInternal.toHexString() : colorInternal.toHex8String();
@@ -48,9 +48,9 @@ class ColorPickerUtils {
   static getResolvedValue(element, value) {
     if (/--[a-zA-Z0-9]+[a-zA-Z0-9-]*/gm.test(value)) {
       const propertyValue = window.getComputedStyle(element).getPropertyValue(value).trim();
-      return propertyValue !== '' ? tinycolor(propertyValue) : undefined;
+      return propertyValue !== '' ? new TinyColor(propertyValue) : undefined;
     } else {
-      return tinycolor(value);
+      return new TinyColor(value);
     }
   }
 }

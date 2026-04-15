@@ -1,76 +1,59 @@
-import {html, PolymerElement} from '@polymer/polymer';
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/component-base';
+import { html, LitElement, css } from 'lit';
 import '../components/color-picker-element-carousel.js';
 import './color-picker-color-palette.js';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-has-color-value-mixin.js';
 
 /**
- * `<color-picker-palette>` shows a set color palettes from which a color can be selected.
+ * `<color-picker-palette>` shows multiple color palettes in a carousel.
  *
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
- * @mixes Vaadin.ColorPicker.HasColorValueMixin
  */
-class ColorPickerPaletteElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(PolymerElement)))) {
+class ColorPickerPaletteElement extends Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(LitElement)) {
 
-  static get template() {
-    return html`
-    <style>
+  static styles = css`
       :host {
+        display: block;
         --switch-button-alignment: flex-start;
       }
-    </style>
+    `;
 
-    <element-carousel disabled$="[[disabled]]"
-                      pinned="[[pinned]]"
-                      theme$="[[theme]]">
-      <dom-repeat as="palette" disable-for-switch items="[[palettes]]">
-        <template>
-          <color-palette disabled$="[[disabled]]"
-                         palette="[[palette]]"
-                         theme$="[[theme]]"
-                         value="{{value}}"></color-palette>
-        </template>
-      </dom-repeat>
-    </element-carousel>
-  `;
+  render() {
+    return html`
+      <element-carousel ?disabled="${this.disabled}"
+                        ?pinned="${this.pinned}"
+                        theme="${this.theme}">
+        ${(this.palettes || []).map(palette => html`
+          <color-palette ?disabled="${this.disabled}"
+                         .palette="${palette}"
+                         theme="${this.theme}"
+                         .value="${this.value}"
+                         @value-changed="${(e) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.value } })); }}">
+          </color-palette>
+        `)}
+      </element-carousel>
+    `;
   }
 
   static get is() {
     return 'color-picker-palette';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
-  }
+  static properties = {
+    theme: { type: String, reflect: true },
+    palettes: { type: Array },
+    pinned: { type: Boolean }
+  };
 
-  static get properties() {
-    return {
-      /**
-       * The palettes to show whereas each palette should be an array of
-       * [TinyColor](https://github.com/bgrins/TinyColor|TinyColor) colors.
-       */
-      palettes: Array,
-      /**
-       * Pin all palettes visible or show them in a carousel.
-       */
-      pinned: {
-        type: Boolean,
-        value: false
-      }
-    };
+  constructor() {
+    super();
+    this.pinned = false;
+    this.palettes = [];
   }
 }
 
 customElements.define(ColorPickerPaletteElement.is, ColorPickerPaletteElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.ColorPickerPaletteElement = ColorPickerPaletteElement;

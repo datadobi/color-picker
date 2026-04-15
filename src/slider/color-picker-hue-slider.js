@@ -1,42 +1,25 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
-import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
 import './color-picker-color-slider.js';
 
 /**
- * `<hue-slider>` is an element that allows to select a **hue** value using a slider.
+ * `<hue-slider>` selects a **hue** value using a slider.
  *
  * @memberof Vaadin.ColorPicker
  */
-class HueSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.ColorSliderElement)) {
+class HueSliderElement extends Vaadin.ColorPicker.ColorSliderElement {
 
   static get is() {
     return 'hue-slider';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
-  }
-
-  /**
-   * @constructor
-   */
   constructor() {
     super();
-
-    this.renderCallback = this._renderHue();
-
     this.enableX = true;
     this.minX = 0;
     this.maxX = 360;
     this.stepX = 1;
+    this.renderCallback = this._renderHue();
   }
 
-  // noinspection JSMethodCanBeStatic
-  /**
-   * The render callback for the background.
-   * @returns {Function}
-   * @private
-   */
   _renderHue() {
     return (canvas) => {
       const ctx = canvas.getContext('2d');
@@ -57,9 +40,6 @@ class HueSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.Col
 
 customElements.define(HueSliderElement.is, HueSliderElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.HueSliderElement = HueSliderElement;

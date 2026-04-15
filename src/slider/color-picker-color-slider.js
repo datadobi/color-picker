@@ -1,29 +1,18 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
-import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
-import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
+import { html, LitElement, css } from 'lit';
 import '../components/color-picker-responsive-canvas.js';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-utils.js';
-import {IronResizableBehavior} from '@polymer/iron-resizable-behavior';
-import {html, PolymerElement} from '@polymer/polymer';
 import ColorPickerUtils from '../utils/color-picker-utils';
 
 /**
- * `ColorSliderElement` is an extendable base class for all sliders regarding color.
- *
- * It allows to specify a render function to render the sliders background.
+ * `ColorSliderElement` is an extendable base class for all color sliders.
  *
  * @abstract
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
- * @mixes Polymer.IronResizableBehavior
  */
-class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([IronResizableBehavior], PolymerElement))) {
-  static get template() {
-    return html`
-    <style include="color-picker-color-slider-styles">
+class ColorSliderElement extends Vaadin.DisabledPropertyMixin(LitElement) {
+
+  static styles = css`
       :host {
         position: relative;
         box-sizing: border-box;
@@ -38,6 +27,7 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
 
       :host([disabled]) {
         -webkit-tap-highlight-color: transparent;
+        pointer-events: none;
       }
 
       [part="canvas"] {
@@ -61,190 +51,233 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
         cursor: inherit;
         margin: 0;
       }
-    </style>
 
-    <responsive-canvas disabled$="[[disabled]]"
-                       part="canvas"
-                       render-callback="[[renderCallback]]"></responsive-canvas>
-    <span part="handle">
-      <span part="background-reset"></span>
-      <input disabled$="[[disabled]]" role="presentation" tabindex="-1" type="button">
-      <span part="background"></span>
-    </span>
-  `;
+      /* Base theme styles */
+      :host {
+        --color-slider-size: calc(var(--color-picker-size-m, 2.25rem) / 2);
+        --color-slider-handle-size: var(--color-slider-size);
+
+        height: var(--color-slider-size);
+        margin: calc(var(--vaadin-gap-xs, 0.25rem) / 2) 0;
+      }
+
+      :host([theme~="small"]) {
+        --color-slider-size: calc(var(--color-picker-size-s, 1.75rem) / 2 + 1px);
+      }
+
+      [part="canvas"] {
+        border-radius: var(--vaadin-radius-m, 0.25em);
+      }
+
+      [part="handle"] {
+        width: var(--color-slider-size);
+        height: var(--color-slider-size);
+        margin-left: calc(var(--color-slider-handle-size) * -0.5);
+        margin-top: calc(var(--color-slider-handle-size) * -0.5);
+        top: calc(var(--color-slider-handle-size) / 2);
+        left: calc(var(--color-slider-handle-size) / 2);
+        box-shadow: var(--color-picker-shadow, 0 1px 2px 0 rgba(0,0,0,.2));
+        border-radius: 50%;
+        transition: transform .2s cubic-bezier(.12, .32, .54, 4);
+        will-change: transform;
+      }
+
+      [part="background-reset"] {
+        border-color: var(--vaadin-background-color, #fff);
+      }
+
+      [part="background"],
+      [part="background-reset"] {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: border-width 0.2s cubic-bezier(.12, .32, .54, 1), border-color 0.15s;
+        will-change: border-width, border-color;
+        border: calc(var(--color-slider-handle-size) / 2) solid var(--vaadin-background-color, #fff);
+        box-sizing: border-box;
+      }
+
+      [part="handle"][active] [part="background"],
+      [part="handle"][active] [part="background-reset"] {
+        border-width: calc(var(--color-slider-handle-size) / 2 - 4px);
+      }
+
+      [part="handle"]::before {
+        content: "test";
+        color: transparent;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background-color: var(--vaadin-background-color, #fff);
+        transform: scale(1.4);
+        opacity: 0;
+        transition: transform 0.1s, opacity 0.8s;
+        will-change: transform, opacity;
+      }
+
+      [part="handle"][active]::before {
+        transition-duration: 0.01s, 0.01s;
+        transform: scale(0);
+        opacity: 0.4;
+      }
+
+      [part="handle"][active] {
+        transform: scale(1.2);
+      }
+
+      [part="handle"]::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border: 3px solid var(--vaadin-focus-ring-color, #1676f3);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 0.25s transform;
+        will-change: transform;
+        background-clip: content-box;
+      }
+
+      [part="handle"]:not([active]):hover::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      :host([focus-ring]) [part="handle"] {
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--vaadin-focus-ring-color, #1676f3) 50%, transparent);
+      }
+
+      :host([disabled]) [part="handle"] {
+        box-shadow: none;
+      }
+
+      :host([disabled]) [part="background"] {
+        border-color: var(--vaadin-background-container, rgba(0,0,0,.05));
+      }
+    `;
+
+  render() {
+    return html`
+      <responsive-canvas ?disabled="${this.disabled}"
+                         part="canvas"
+                         .renderCallback="${this.renderCallback}"></responsive-canvas>
+      <span part="handle">
+        <span part="background-reset"></span>
+        <input ?disabled="${this.disabled}" role="presentation" tabindex="-1" type="button">
+        <span part="background"></span>
+      </span>
+    `;
   }
 
   static get is() {
     return 'color-slider';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
+  static properties = {
+    theme: { type: String, reflect: true },
+    enableX: { type: Boolean },
+    enableY: { type: Boolean },
+    valueX: { type: Number },
+    valueY: { type: Number },
+    minX: { type: Number },
+    minY: { type: Number },
+    maxX: { type: Number },
+    maxY: { type: Number },
+    stepX: { type: Number },
+    stepY: { type: Number },
+    renderCallback: { type: Object }
+  };
+
+  constructor() {
+    super();
+    this.enableX = true;
+    this.enableY = false;
+    this.valueX = 0;
+    this.valueY = 0;
+    this.minX = 0;
+    this.minY = 0;
+    this.maxX = 100;
+    this.maxY = 100;
+    this.stepX = 1;
+    this.stepY = 1;
   }
 
-  static get properties() {
-    return {
-      /**
-       * Enable the possibility to move the handle in the X-direction.
-       */
-      enableX: {
-        type: Boolean,
-        value: true
-      },
-      /**
-       * Enable the possibility to move the handle in the Y-direction.
-       */
-      enableY: {
-        type: Boolean,
-        value: false
-      },
-      /**
-       * The current X-value.
-       */
-      valueX: {
-        type: Number,
-        value: 0,
-        notify: true
-      },
-      /**
-       * The current Y-value.
-       */
-      valueY: {
-        type: Number,
-        value: 0,
-        notify: true
-      },
-      /**
-       * The lower bound of the X-value.
-       */
-      minX: {
-        type: Number,
-        value: 0
-      },
-      /**
-       * The lower bound of the Y-value.
-       */
-      minY: {
-        type: Number,
-        value: 0
-      },
-      /**
-       * The upper bound of the X-value.
-       */
-      maxX: {
-        type: Number,
-        value: 100
-      },
-      /**
-       * The upper bound of the Y-value.
-       */
-      maxY: {
-        type: Number,
-        value: 100
-      },
-      /**
-       * The steps that are added and removed to the current X-value if the slider handle is
-       * moved.
-       */
-      stepX: {
-        type: Number,
-        value: 1
-      },
-      /**
-       * The steps that are added and removed to the current Y-value if the slider handle is
-       * moved.
-       */
-      stepY: {
-        type: Number,
-        value: 1
-      },
-      /**
-       * The callback that is used to render the sliders background.
-       */
-      renderCallback: Function,
-      _canvas: {
-        type: Object,
-        readOnly: true
-      },
-      _handle: {
-        type: Object,
-        readOnly: true
-      }
-    };
-  }
-
-  /**
-   * @protected
-   */
-  ready() {
-    super.ready();
-
-    this._set_canvas(this.shadowRoot.querySelector('[part~="canvas"]'));
-    this._set_handle(this.shadowRoot.querySelector('[part~="handle"]'));
-
+  firstUpdated() {
+    this._canvas = this.shadowRoot.querySelector('[part~="canvas"]');
+    this._handle = this.shadowRoot.querySelector('[part~="handle"]');
     this._setupHandle();
 
-    this._createPropertyObserver('renderCallback', 'onResize', true);
-    this._createPropertyObserver('valueX', '_valueXChanged', true);
-    this._createPropertyObserver('valueY', '_valueYChanged', true);
+    this._resizeObserver = new ResizeObserver(() => this.onResize());
+    this._resizeObserver.observe(this);
   }
 
-  /**
-   * @protected
-   * */
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('iron-resize', this.onResize.bind(this));
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._resizeObserver?.disconnect();
   }
 
-  /**
-   * Render the sliders background on the canvas.
-   */
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('renderCallback')) {
+      this.onResize();
+    }
+    if (changedProperties.has('valueX')) {
+      this._valueXChanged(this.valueX);
+    }
+    if (changedProperties.has('valueY')) {
+      this._valueYChanged(this.valueY);
+    }
+  }
+
   renderCanvas() {
-    this._canvas.renderCanvas();
+    this._canvas?.renderCanvas();
   }
 
-  /**
-   * Repositions the handler if resized.
-   */
   onResize() {
     this._valueXChanged(this.valueX);
     this._valueYChanged(this.valueY);
   }
 
-  /**
-   * Setup the handle.
-   * @private
-   */
   _setupHandle() {
     const onMouseMove = (e) => {
       if (this.enableX) {
         const positionX = e.clientX - this._canvas.getBoundingClientRect().left;
         const x = ColorPickerUtils.limit(positionX, 0, this._canvas.scrollWidth);
-        this.valueX = ColorPickerUtils.roundToNearest(
+        const newValueX = ColorPickerUtils.roundToNearest(
           ((this.maxX - this.minX) * (x / this._canvas.scrollWidth) + this.minX),
           this.stepX);
+        if (newValueX !== this.valueX) {
+          this.valueX = newValueX;
+          this.dispatchEvent(new CustomEvent('value-x-changed', { detail: { value: this.valueX } }));
+        }
       }
 
       if (this.enableY) {
         const positionY = e.clientY - this._canvas.getBoundingClientRect().top;
         const y = ColorPickerUtils.limit(positionY, 0, this._canvas.scrollHeight);
-        this.valueY = ColorPickerUtils.roundToNearest(
+        const newValueY = ColorPickerUtils.roundToNearest(
           ((this.maxY - this.minY) * (y / this._canvas.scrollHeight) + this.minY),
           this.stepY);
+        if (newValueY !== this.valueY) {
+          this.valueY = newValueY;
+          this.dispatchEvent(new CustomEvent('value-y-changed', { detail: { value: this.valueY } }));
+        }
       }
     };
 
     const onTouchMove = (e) => {
       e.stopPropagation();
-
-      // Translate to mouse event
-      var mouseEvent = document.createEvent('MouseEvent');
+      const mouseEvent = document.createEvent('MouseEvent');
       mouseEvent.initMouseEvent('mousemove', true, true, window, e.detail,
         e.touches[0].screenX, e.touches[0].screenY,
         e.touches[0].clientX, e.touches[0].clientY,
         false, false, false, false, 0, null);
-
       onMouseMove(mouseEvent);
     };
 
@@ -263,7 +296,6 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
     const onMouseDown = (e) => {
       e.preventDefault();
       onMouseMove(e);
-
       this._handle.setAttribute('active', '');
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
@@ -273,7 +305,6 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
       e.preventDefault();
       e.stopPropagation();
       onTouchMove(e);
-
       this._handle.setAttribute('active', '');
       document.addEventListener('touchmove', onTouchMove);
       document.addEventListener('touchend', onTouchEnd);
@@ -281,33 +312,20 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
 
     const onKeyDown = (e) => {
       const key = e.key || e.keyCode;
-
       if (key === 37 || key === 38 || key === 39 || key === 40) {
         e.preventDefault();
       }
-
       if (this.enableX && this.enableY) {
-        if (key === 37) {
-          this._decreaseX();
-        } else if (key === 38) {
-          this._increaseY();
-        } else if (key === 39) {
-          this._increaseX();
-        } else if (key === 40) {
-          this._decreaseY();
-        }
+        if (key === 37) { this._decreaseX(); }
+        else if (key === 38) { this._increaseY(); }
+        else if (key === 39) { this._increaseX(); }
+        else if (key === 40) { this._decreaseY(); }
       } else if (this.enableX) {
-        if (key === 37 || key === 40) {
-          this._decreaseX();
-        } else if (key === 39 || key === 38) {
-          this._increaseX();
-        }
+        if (key === 37 || key === 40) { this._decreaseX(); }
+        else if (key === 39 || key === 38) { this._increaseX(); }
       } else if (this.enableY) {
-        if (key === 37 || key === 40) {
-          this._decreaseY();
-        } else if (key === 39 || key === 38) {
-          this._increaseY();
-        }
+        if (key === 37 || key === 40) { this._decreaseY(); }
+        else if (key === 39 || key === 38) { this._increaseY(); }
       }
     };
 
@@ -318,100 +336,51 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
     this._canvas.addEventListener('mousedown', onMouseDown);
   }
 
-  /**
-   * Check if the upper bound is smaller than the lower bound on the X-axis.
-   * @returns {boolean}
-   * @private
-   */
-  _invertedX() {
-    return this.maxX < this.minX;
-  }
+  _invertedX() { return this.maxX < this.minX; }
+  _invertedY() { return this.maxY < this.minY; }
 
-  /**
-   * Check if the upper bound is smaller than the lower bound on the Y-axis.
-   * @returns {boolean}
-   * @private
-   */
-  _invertedY() {
-    return this.maxY < this.minY;
-  }
-
-  /**
-   * Increase the x-value depending on the fact whether the X-axis is inverted.
-   * @private
-   */
   _increaseX() {
-    if (!this._invertedX()) {
-      this.valueX = Math.min(this.maxX, this.valueX + this.stepX);
-    } else {
-      this.valueX = Math.min(this.minX, this.valueX + this.stepX);
-    }
+    this.valueX = !this._invertedX()
+      ? Math.min(this.maxX, this.valueX + this.stepX)
+      : Math.min(this.minX, this.valueX + this.stepX);
+    this.dispatchEvent(new CustomEvent('value-x-changed', { detail: { value: this.valueX } }));
   }
 
-  /**
-   * Decrease the x-value depending on the fact whether the X-axis is inverted.
-   * @private
-   */
   _decreaseX() {
-    if (!this._invertedX()) {
-      this.valueX = Math.max(this.minX, this.valueX - this.stepX);
-    } else {
-      this.valueX = Math.max(this.maxX, this.valueX - this.stepX);
-    }
+    this.valueX = !this._invertedX()
+      ? Math.max(this.minX, this.valueX - this.stepX)
+      : Math.max(this.maxX, this.valueX - this.stepX);
+    this.dispatchEvent(new CustomEvent('value-x-changed', { detail: { value: this.valueX } }));
   }
 
-  /**
-   * Increase the x-value depending on the fact whether the Y-axis is inverted.
-   * @private
-   */
   _increaseY() {
-    if (!this._invertedY()) {
-      this.valueY = Math.min(this.maxY, this.valueY + this.stepY);
-    } else {
-      this.valueY = Math.min(this.minY, this.valueY + this.stepY);
-    }
+    this.valueY = !this._invertedY()
+      ? Math.min(this.maxY, this.valueY + this.stepY)
+      : Math.min(this.minY, this.valueY + this.stepY);
+    this.dispatchEvent(new CustomEvent('value-y-changed', { detail: { value: this.valueY } }));
   }
 
-  /**
-   * Decrease the x-value depending on the fact whether the Y-axis is inverted.
-   * @private
-   */
   _decreaseY() {
-    if (!this._invertedY()) {
-      this.valueY = Math.max(this.minY, this.valueY - this.stepY);
-    } else {
-      this.valueY = Math.max(this.maxY, this.valueY - this.stepY);
-    }
+    this.valueY = !this._invertedY()
+      ? Math.max(this.minY, this.valueY - this.stepY)
+      : Math.max(this.maxY, this.valueY - this.stepY);
+    this.dispatchEvent(new CustomEvent('value-y-changed', { detail: { value: this.valueY } }));
   }
 
-  /**
-   * Reposition the handle if the X-value changed.
-   * @param value the new value.
-   * @private
-   */
   _valueXChanged(value) {
-    if (this.enableX) {
+    if (this.enableX && this._canvas) {
       this._handle.style.left = (this._canvas.scrollWidth)
         * ((value - this.minX) / (this.maxX - this.minX)) + 'px';
     }
   }
 
-  /**
-   * Reposition the handle if the Y-value changed.
-   * @param value the new value.
-   * @private
-   */
   _valueYChanged(value) {
-    if (this.enableY) {
+    if (this.enableY && this._canvas) {
       this._handle.style.top = (this._canvas.scrollHeight)
         * ((value - this.minY) / (this.maxY - this.minY)) + 'px';
     }
   }
 
-  /**
-   * The element to focus.
-   * @returns {*|Vaadin.ColorPicker.ColorSliderElement}
-   */
   get focusElement() {
     return this.shadowRoot.querySelector('input') || this;
   }
@@ -419,10 +388,6 @@ class ColorSliderElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
 
 customElements.define(ColorSliderElement.is, ColorSliderElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.ColorSliderElement = ColorSliderElement;
-

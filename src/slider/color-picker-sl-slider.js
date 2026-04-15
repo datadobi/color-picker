@@ -1,43 +1,34 @@
+import { css } from 'lit';
 import './color-picker-color-slider.js';
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/component-base';
 
 /**
- * `<sl-slider>` is an element that allows to select a **saturation** and **lightness** value
- * from the hsv color space using a slider.
+ * `<sl-slider>` selects a **saturation** and **lightness** value using a 2D slider.
  *
  * @memberof Vaadin.ColorPicker
  */
-class SlSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.ColorSliderElement)) {
+class SlSliderElement extends Vaadin.ColorPicker.ColorSliderElement {
+
+  static styles = [
+    super.styles,
+    css`
+      :host {
+        height: calc(var(--color-slider-size) * 8);
+        width: 100%;
+      }
+    `
+  ];
 
   static get is() {
     return 'sl-slider';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
-  }
+  static properties = {
+    hue: { type: Number }
+  };
 
-  static get properties() {
-    return {
-
-      /**
-       * The **h**sv-hue of the color to show as background in the range `[0 - 360]`.
-       */
-      hue: {
-        type: Number,
-        value: 0
-      }
-    };
-  }
-
-  /**
-   * @constructor
-   */
   constructor() {
     super();
-
-    this.renderCallback = this._renderSl();
+    this.hue = 0;
 
     this.enableX = true;
     this.minX = 0;
@@ -51,21 +42,17 @@ class SlSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.Colo
 
     this.style.height = 'calc(var(--color-slider-size) * 8)';
     this.style.width = '100%';
+
+    this.renderCallback = this._renderSl();
   }
 
-  /**
-   * @protected
-   */
-  ready() {
-    super.ready();
-    this._createPropertyObserver('hue', 'renderCanvas', true);
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('hue')) {
+      this.renderCanvas();
+    }
   }
 
-  /**
-   * The render callback for the background.
-   * @returns {Function}
-   * @private
-   */
   _renderSl() {
     return (canvas) => {
       const ctx = canvas.getContext('2d');
@@ -93,9 +80,6 @@ class SlSliderElement extends ElementMixin(ThemableMixin(Vaadin.ColorPicker.Colo
 
 customElements.define(SlSliderElement.is, SlSliderElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.SlSliderElement = SlSliderElement;

@@ -1,6 +1,6 @@
 {
   "name": "@datadobi/color-picker",
-  "version": "2.1.0-datadobi1",
+  "version": "3.0.0-datadobi1",
   "description": "color-picker",
   "main": "color-picker.js",
   "repository": "datadobi/color-picker",
@@ -8,8 +8,7 @@
     "Vaadin",
     "color-picker",
     "web-components",
-    "web-component",
-    "polymer"
+    "web-component"
   ],
   "author": "Juchar",
   "license": "Apache-2.0",
@@ -21,45 +20,27 @@
     "registry": "https://artifactory.datadobi.net/artifactory/api/npm/npm-release-local/"
   },
   "files": [
-    "vaadin-*.js",
+    "color-picker.js",
     "src",
     "theme"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
   "scripts": {
-    "check": "npm-run-all --parallel check:*",
-    "check:bower": "magi check-bower",
-    "check:version": "magi check-version",
-    "lint": "npm-run-all --parallel lint:*",
-    "lint:css": "stylelint *.js src/*.js demo/*.js theme/**/*.js",
-    "lint:js": "eslint *.js src demo --ext .js",
-    "prestart": "polymer analyze > analysis.json",
-    "start": "polymer serve --port 3000 --open --npm",
-    "preversion": "magi update-version"
+    "start": "vite"
   },
   "devDependencies": {
-    "@polymer/iron-component-page": "^4.0.1",
-    "@vaadin/vaadin-component-dev-dependencies": "^3.2.0",
-    "@vaadin/vaadin-demo-helpers": "^3.1.0",
-    "@webcomponents/webcomponentsjs": "^2.3.0"
+    "vite": "^6.4.2"
   },
   "dependencies": {
-    "@polymer/iron-resizable-behavior": "^3.0.1",
-    "@polymer/polymer": "^3.4.1",
-    "@thebespokepixel/es-tinycolor": "^1.0.7",
-    "@vaadin/button": "^24.1.4",
-    "@vaadin/checkbox": "^24.1.4",
-    "@vaadin/field-base": "^24.1.4",
-    "@vaadin/component-base": "^24.1.4",
-    "@vaadin/icon": "^24.1.4",
-    "@vaadin/icons": "^24.1.4",
-    "@vaadin/tabs": "^24.1.4",
-    "@vaadin/text-field": "^24.1.4",
-    "@vaadin/number-field": "^24.1.4",
-    "@vaadin/vaadin-themable-mixin": "^24.1.4"
+    "@ctrl/tinycolor": "^4.2.0",
+    "@vaadin/button": "^25.1.0",
+    "@vaadin/checkbox": "^25.1.0",
+    "@vaadin/component-base": "^25.1.0",
+    "@vaadin/icon": "^25.1.0",
+    "@vaadin/icons": "^25.1.0",
+    "@vaadin/number-field": "^25.1.0",
+    "@vaadin/text-field": "^25.1.0",
+    "@vaadin/vaadin-lumo-styles": "~25.1.0",
+    "@vaadin/vaadin-themable-mixin": "^25.1.0",
+    "lit": "^3.3.2"
   }
 }

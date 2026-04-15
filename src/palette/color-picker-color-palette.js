@@ -1,24 +1,18 @@
-import {html, PolymerElement} from '@polymer/polymer';
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin';
-import {ElementMixin} from '@vaadin/component-base';
+import { html, LitElement, css } from 'lit';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-has-color-value-mixin.js';
 import './color-picker-color-checkbox.js';
-import {tinycolor} from '@thebespokepixel/es-tinycolor';
+import { TinyColor } from '@ctrl/tinycolor';
+import { sharedStyles } from '../styles/shared-styles.js';
 
 /**
  * `<color-palette>` shows a set of colors that can be selected.
  *
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
- * @mixes Vaadin.ColorPicker.HasColorValueMixin
  */
-class ColorPaletteElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(PolymerElement)))) {
-  static get template() {
-    return html`
-    <style include="color-picker-shared-styles">
+class ColorPaletteElement extends Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(LitElement)) {
+
+  static styles = [sharedStyles, css`
       :host {
         width: 100%;
       }
@@ -31,66 +25,46 @@ class ColorPaletteElement extends ElementMixin(ThemableMixin(Vaadin.DisabledProp
       [part="container"] > * {
         flex-grow: 0 !important;
       }
-    </style>
+    `];
 
-    <div class="horizontal-spacing" part="container">
-      <dom-repeat as="color" items="[[palette]]">
-        <template>
-          <color-checkbox checked="[[_isSelected(color,value)]]"
-                          color="[[color]]"
-                          disabled$="[[disabled]]"
-                          on-change="_setColorFromPalette"
-                          theme$="[[theme]]"
-                          value$="[[index]]"></color-checkbox>
-        </template>
-      </dom-repeat>
+  render() {
+    return html`
+      <div class="horizontal-spacing" part="container">
+        ${(this.palette || []).map((color, index) => html`
+          <color-checkbox ?checked="${this._isSelected(color)}"
+                          .color="${color}"
+                          ?disabled="${this.disabled}"
+                          @click="${() => { this._setColorFromPalette(color); }}"
+                          theme="${this.theme}"
+                          value="${index}">
+          </color-checkbox>
+        `)}
       </div>
-        `;
+    `;
   }
 
   static get is() {
     return 'color-palette';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
+  static properties = {
+    theme: { type: String, reflect: true },
+    palette: { type: Array }
+  };
+
+  _setColorFromPalette(color) {
+    this.value = color;
+    this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.value } }));
   }
 
-  static get properties() {
-    return {
-      /**
-       * The palette of colors to show. Each color in the array should be a
-       * [TinyColor](https://github.com/bgrins/TinyColor|TinyColor) color.
-       */
-      palette: Array
-    };
-  }
-
-  /**
-   * Set the current value.
-   * @param e the click event
-   * @private
-   */
-  _setColorFromPalette(e) {
-    this.value = e.model.color;
-  }
-
-  /**
-   * Check if a the provided color is the current value.
-   * @param color
-   * @returns {boolean}
-   * @private
-   */
   _isSelected(color) {
-    return color && this.value && tinycolor(color).toRgbString() === tinycolor(this.value).toRgbString();
+    return color && this.value
+      && new TinyColor(color).toRgbString() === new TinyColor(this.value).toRgbString();
   }
 }
 
 customElements.define(ColorPaletteElement.is, ColorPaletteElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.ColorPaletteElement = ColorPaletteElement;

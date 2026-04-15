@@ -1,50 +1,45 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
-import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
+import { html, LitElement, css } from 'lit';
 import '@vaadin/icon';
 import '../utils/vaadin-disabled-property-mixin.js';
 import '../utils/color-picker-has-color-value-mixin.js';
-import '../utils/color-picker-utils.js';
-import '../components/color-picker-responsive-canvas';
-import {tinycolor} from '@thebespokepixel/es-tinycolor';
-import {html, PolymerElement} from '@polymer/polymer';
+import '../components/color-picker-responsive-canvas.js';
+import { TinyColor } from '@ctrl/tinycolor';
 import ColorPickerUtils from '../utils/color-picker-utils';
 
 /**
- * `<selected-color>` shows a selected color. If a previous color is specified, this one will
- * be also visible.
+ * `<selected-color>` shows the selected color and optionally a previous color.
+ * Clicking the previous color resets to it.
  *
  * @memberof Vaadin.ColorPicker
- * @mixes ElementMixin
- * @mixes ThemableMixin
- * @mixes Vaadin.DisabledPropertyMixin
- * @mixes Vaadin.ColorPicker.HasColorValueMixin
  */
-class SelectedColorElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(PolymerElement)))) {
-  static get template() {
-    return html`<style include="color-picker-shared-styles">
+class SelectedColorElement extends Vaadin.DisabledPropertyMixin(Vaadin.ColorPicker.HasColorValueMixin(LitElement)) {
+
+  static styles = css`
       :host {
         position: relative;
+        display: block;
       }
+
       [part="previous-color-canvas"],
       [part="selected-color-canvas"] {
         position: absolute;
         height: 100%;
       }
+
       [part="selected-color-canvas"] {
         width: 100%;
-      }
-      [part="previous-color-canvas"] {
-        width: 50%;
-      }
-      [part="selected-color-canvas"] {
         left: 0;
       }
+
       [part="previous-color-canvas"] {
+        width: 50%;
         right: 0;
       }
+
       [part="previous-icon"] {
         opacity: 0;
       }
+
       [part="halo"] {
         position: absolute;
         width: 100%;
@@ -52,117 +47,157 @@ class SelectedColorElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPro
         color: transparent;
         opacity: 0;
       }
+
       :host([has-previous-value]:hover) [part="previous-color-canvas"] {
         width: 100%;
       }
+
       :host([has-previous-value]:hover) [part="previous-icon"] {
         opacity: 1;
       }
-    </style>
-    <span part="halo"></span>
-    <responsive-canvas disabled$="[[disabled]]"
-                       part="selected-color-canvas"
-                       render-callback="[[_renderSelectedColor(value)]]"></responsive-canvas>
-    <responsive-canvas disabled$="[[disabled]]"
-                       hidden$="[[!_showSelectPreviousValue(value,previousValue)]]"
-                       on-click="_resetToPreviousValue"
-                       part="previous-color-canvas"
-                       render-callback="[[_renderPreviousColor(previousValue)]]">
-      <vaadin-icon icon="vaadin:check" part="previous-icon"></vaadin-icon>
-    </responsive-canvas>
-  `;
+
+      /* Base theme styles */
+      :host {
+        --color-picker-selected-color-box-shadow: var(--color-picker-shadow, 0 1px 2px 0 rgba(0,0,0,.2));
+
+        width: var(--color-picker-size-m, 2.25rem);
+        height: var(--color-picker-size-m, 2.25rem);
+        box-shadow: var(--color-picker-selected-color-box-shadow);
+        margin: var(--vaadin-gap-xs, 0.25rem) 0;
+        border-radius: 50%;
+      }
+
+      :host([disabled]) {
+        pointer-events: none;
+        box-shadow: none;
+      }
+
+      :host([disabled])::after {
+        position: absolute;
+        content: '';
+        background: var(--vaadin-background-container-strong, rgba(0,0,0,.1));
+        box-sizing: border-box;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
+
+      [part="previous-color-canvas"],
+      [part="selected-color-canvas"] {
+        transition: width .2s cubic-bezier(.12, .32, .54, 1), border-radius .2s cubic-bezier(.12, .32, .54, 1);
+        will-change: width, border-radius;
+      }
+
+      [part="selected-color-canvas"] {
+        border-radius: 50%;
+      }
+
+      [part="previous-color-canvas"] {
+        border-top-right-radius: 100% 50%;
+        border-bottom-right-radius: 100% 50%;
+      }
+
+      [part="previous-icon"] {
+        padding: 8px;
+        box-sizing: border-box;
+        transform: scale(0);
+        transition: opacity .4s, transform .2s cubic-bezier(.12, .32, .54, 2);
+        will-change: opacity, transform;
+      }
+
+      [part="halo"] {
+        border-radius: 50%;
+        transform: scale(1.4);
+        transition: transform 0.1s, opacity 0.8s;
+        will-change: transform, opacity;
+      }
+
+      :host([has-previous-value]:hover) [part="previous-color-canvas"] {
+        border-radius: 50%;
+      }
+
+      :host([has-previous-value]:hover) [part="previous-icon"] {
+        transform: scale(1);
+      }
+
+      :host([has-previous-value]:hover:active) [part="previous-icon"] {
+        transform: scale(1.15);
+      }
+
+      :host([has-previous-value]:active) [part="halo"] {
+        transition-duration: 0.01s, 0.01s;
+        transform: scale(0);
+        opacity: 0.4;
+      }
+    `;
+
+  render() {
+    return html`
+      <span part="halo"></span>
+      <responsive-canvas ?disabled="${this.disabled}"
+                         part="selected-color-canvas"
+                         .renderCallback="${this._renderSelectedColor()}">
+      </responsive-canvas>
+      <responsive-canvas ?disabled="${this.disabled}"
+                         ?hidden="${!this._showSelectPreviousValue()}"
+                         @click="${this._resetToPreviousValue}"
+                         part="previous-color-canvas"
+                         .renderCallback="${this._renderPreviousColor()}">
+        <vaadin-icon icon="vaadin:check" part="previous-icon"></vaadin-icon>
+      </responsive-canvas>
+    `;
   }
 
   static get is() {
     return 'selected-color';
   }
 
-  static get version() {
-    return '2.1.0-datadobi1';
+  static properties = {
+    previousValue: { type: Object },
+    hasPreviousValue: { type: Boolean, reflect: true, attribute: 'has-previous-value' }
+  };
+
+  updated(changedProperties) {
+    super.updated(changedProperties);
+
+    if (changedProperties.has('previousValue') || changedProperties.has('value')) {
+      this.hasPreviousValue = this._showSelectPreviousValue();
+    }
+
+    if (changedProperties.has('previousValue')) {
+      const previousIcon = this.shadowRoot.querySelector('[part="previous-icon"]');
+      const halo = this.shadowRoot.querySelector('[part="halo"]');
+      if (previousIcon && halo) {
+        previousIcon.style.color = this.previousValue
+          ? ColorPickerUtils.getContrastColor(this.previousValue)
+          : 'transparent';
+        halo.style.backgroundColor = this.previousValue
+          ? this.previousValue.toRgbString()
+          : 'transparent';
+      }
+    }
   }
 
-  static get properties() {
-    return {
-      /**
-       * The previous value.
-       */
-      previousValue: {
-        type: Object,
-        observer: '_previousValueChanged'
-      },
-      hasPreviousValue: {
-        type: Boolean,
-        reflectToAttribute: true,
-        computed: '_showSelectPreviousValue(value,previousValue)'
-      },
-      previousIcon: Object,
-      halo: Object
-    };
-  }
-
-  ready() {
-    super.ready();
-    this.previousIcon = this.shadowRoot.querySelector('[part="previous-icon"]');
-    this.halo = this.shadowRoot.querySelector('[part="halo"]');
-  }
-
-  /**
-   * @private
-   **/
-  _previousValueChanged() {
-    this.previousIcon.style.color = this.previousValue
-      ? ColorPickerUtils.getContrastColor(this.previousValue)
-      : 'transparent';
-    this.halo.style.backgroundColor = this.previousValue ? this.previousValue.toRgbString() : 'transparent';
-  }
-
-  /**
-   * Check if a value is set for the previous value.
-   * @returns {boolean}
-   * @private
-   */
   _showSelectPreviousValue() {
     return this.previousValue !== undefined && this.previousValue !== null
-      && this.previousValue.toRgbString() !== (this.value !== undefined && this.value !== null ? this.value.toRgbString() : undefined);
+      && this.previousValue.toRgbString() !== (this.value !== undefined && this.value !== null
+        ? this.value.toRgbString()
+        : undefined);
   }
 
-  /**
-   * Callback to render the selected color.
-   * @returns {Function}
-   * @private
-   */
   _renderSelectedColor() {
-    return (canvas) => {
-      SelectedColorElement._renderColor(canvas, this.value);
-    };
+    return (canvas) => SelectedColorElement._renderColor(canvas, this.value);
   }
 
-  /**
-   * Callback to render the previous color.
-   * @returns {Function}
-   * @private
-   */
   _renderPreviousColor() {
-    return (canvas) => {
-      SelectedColorElement._renderColor(canvas, this.previousValue);
-    };
+    return (canvas) => SelectedColorElement._renderColor(canvas, this.previousValue);
   }
 
-  /**
-   * Reset the value to the previous value.
-   * @private
-   **/
   _resetToPreviousValue() {
     this.value = this.previousValue;
+    this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.value } }));
   }
 
-  /**
-   * Render a color to a canvas.
-   * @param canvas The canvas to show the color in.
-   * @param color The color to show in the format of a valid
-   * [TinyColor](https://github.com/bgrins/TinyColor|TinyColor) color
-   * @private
-   */
   static _renderColor(canvas, color) {
     const ctx = canvas.getContext('2d');
     const width = canvas.scrollWidth;
@@ -171,9 +206,7 @@ class SelectedColorElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPro
     ctx.clearRect(0, 0, width, height);
 
     if (color) {
-      const rgbString = tinycolor(color).toRgbString();
-      ctx.fillStyle =
-        `${rgbString}`;
+      ctx.fillStyle = new TinyColor(color).toRgbString();
       ctx.fillRect(0, 0, width, height);
     }
   }
@@ -181,9 +214,6 @@ class SelectedColorElement extends ElementMixin(ThemableMixin(Vaadin.DisabledPro
 
 customElements.define(SelectedColorElement.is, SelectedColorElement);
 
-/**
- * @namespace Vaadin.ColorPicker
- */
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.ColorPicker = window.Vaadin.ColorPicker || {};
 window.Vaadin.ColorPicker.SelectedColorElement = SelectedColorElement;

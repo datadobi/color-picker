@@ -1,16 +1,121 @@
 <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Color Picker — Demo</title>
+  <link rel="stylesheet" href="/node_modules/@vaadin/vaadin-lumo-styles/dist/lumo.css">
+  <script type="module" src="./color-picker.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f5f5f5;
+      color: #333;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.2rem; margin: 2rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; }
+    p  { color: #555; margin: 0.25rem 0 0.75rem; font-size: 0.9rem; }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 1rem; }
+    .demo-card { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    pre { background: #f0f0f0; border-radius: 4px; padding: 0.5rem 0.75rem; font-size: 0.8rem; overflow-x: auto; margin: 0.5rem 0 1rem; }
+    code { font-size: 0.85em; }
+  </style>
+</head>
+<body>
 
-<html>
-  <head>
-    <title>color-picker</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-    <script type="module">
-        import '@polymer/iron-component-page/iron-component-page.js';
-    </script>
-  </head>
-  <body>
-    <iron-component-page src="color-picker.js"></iron-component-page>
-  </body>
+  <h1>Color Picker</h1>
+  <p>Demos for <code>&lt;color-picker&gt;</code></p>
+
+  <h2>Basic</h2>
+  <div class="demo-row">
+    <div class="demo-card"><color-picker id="basic"></color-picker></div>
+  </div>
+  <pre>&lt;color-picker&gt;&lt;/color-picker&gt;</pre>
+
+  <h2>Initial value &amp; previous value</h2>
+  <p>Use <code>value</code> for the initial color and <code>previous-value</code> to show a reset target. Hover and click the color circle to reset.</p>
+  <div class="demo-row">
+    <div class="demo-card">
+      <color-picker previous-value="#ff00bf44" value="hsla(135,100%,50%,0.5)"></color-picker>
+    </div>
+  </div>
+  <pre>&lt;color-picker previous-value="#ff00bf44" value="hsla(135,100%,50%,0.5)"&gt;&lt;/color-picker&gt;</pre>
+
+  <h2>Palettes</h2>
+  <p>Set <code>palettes</code> to an array of arrays of CSS color strings.</p>
+  <div class="demo-row">
+    <div class="demo-card"><color-picker id="palette-demo"></color-picker></div>
+  </div>
+
+  <h2>CSS Custom Properties</h2>
+  <p><code>value</code> and <code>previous-value</code> accept CSS custom property names.</p>
+  <div class="demo-row">
+    <div class="demo-card">
+      <color-picker id="css-props-demo" value="--lumo-primary-color" previous-value="--lumo-success-color"></color-picker>
+    </div>
+  </div>
+
+  <h2>Disable alpha</h2>
+  <div class="demo-row">
+    <div class="demo-card"><color-picker disable-alpha></color-picker></div>
+    <div class="demo-card">
+      <p style="margin:0 0 0.5rem"><code>disable-alpha</code> + <code>disable-sl</code></p>
+      <color-picker disable-alpha disable-sl></color-picker>
+    </div>
+  </div>
+
+  <h2>Disable color formats</h2>
+  <div class="demo-row">
+    <div class="demo-card">
+      <p style="margin:0 0 0.5rem"><code>disable-hex</code></p>
+      <color-picker disable-hex></color-picker>
+    </div>
+  </div>
+
+  <h2>Small theme</h2>
+  <div class="demo-row">
+    <div class="demo-card"><color-picker theme="small"></color-picker></div>
+  </div>
+  <pre>&lt;color-picker theme="small"&gt;&lt;/color-picker&gt;</pre>
+
+  <h2>Pinned inputs &amp; palettes</h2>
+  <div class="demo-row">
+    <div class="demo-card">
+      <p style="margin:0 0 0.5rem"><code>pinned-inputs</code></p>
+      <color-picker id="pinned-inputs" pinned-inputs></color-picker>
+    </div>
+    <div class="demo-card">
+      <p style="margin:0 0 0.5rem"><code>pinned-palettes</code></p>
+      <color-picker id="pinned-palettes" pinned-palettes></color-picker>
+    </div>
+  </div>
+
+  <h2>Custom resolution</h2>
+  <p>Use <code>step-alpha</code> and <code>step-hsl</code> for finer precision.</p>
+  <div class="demo-row">
+    <div class="demo-card"><color-picker step-alpha="0.001" step-hsl="0.01"></color-picker></div>
+  </div>
+
+  <script type="module">
+    const rainbowPalettes = [
+      ['hsl(0,100%,50%)', 'hsl(45,100%,50%)', 'hsl(90,100%,50%)', 'hsl(135,100%,50%)',
+       'hsl(180,100%,50%)', 'hsl(225,100%,50%)', 'hsl(270,100%,50%)', 'hsl(315,100%,50%)'],
+      ['hsla(0,100%,50%,0.5)', 'hsla(45,100%,50%,0.5)', 'hsla(90,100%,50%,0.5)',
+       'hsla(135,100%,50%,0.5)', 'hsla(180,100%,50%,0.5)', 'hsla(225,100%,50%,0.5)',
+       'hsla(270,100%,50%,0.5)', 'hsla(315,100%,50%,0.5)']
+    ];
+    document.getElementById('palette-demo').palettes = rainbowPalettes;
+    document.getElementById('pinned-inputs').palettes = rainbowPalettes;
+    document.getElementById('pinned-palettes').palettes = rainbowPalettes;
+    document.getElementById('css-props-demo').palettes = [
+      ['--lumo-primary-color', '--lumo-success-color', '--lumo-error-color']
+    ];
+    document.getElementById('basic').addEventListener('value-changed', (e) => {
+      console.log('color:', e.detail.value);
+    });
+  </script>
+</body>
 </html>
