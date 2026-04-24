@@ -90,7 +90,7 @@ class ResponsiveCanvasElement extends Vaadin.DisabledPropertyMixin(LitElement) {
 
   _refreshCanvas() {
     this._refreshCanvasSize();
-    this.renderCanvas();
+    this.updateComplete.then(() => this.renderCanvas());
   }
 
   _refreshCanvasSize() {

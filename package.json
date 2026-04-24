@@ -1,6 +1,6 @@
 {
   "name": "@datadobi/color-picker",
-  "version": "3.0.0-datadobi1",
+  "version": "3.0.0-datadobi2",
   "description": "color-picker",
   "main": "color-picker.js",
   "repository": "datadobi/color-picker",
